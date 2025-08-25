@@ -1,0 +1,18 @@
+# Fichiers cachés crées par Mac OS
+.DS_Store
+Icon?
+~*
+
+# Dossiers et fichiers cachés crée par l'environnement de développment 
+#.idea/ (ex.: PHPStorm)
+
+# Dossier caché de fichiers temporaires crées pas SASS
+.sass-cache/
+
+# Dossiers de dépendances (ex.: node_modules)
+# C'est très lourd! Vraiment important de ne pas archiver sur aucun serveur
+# On archive uniquement le fichier de configuration package.json et package-lock.json
+node_modules/
+
+# Dossier de compilation des ressources (change constamment et donc prompt à générer des conflits)
+public/css

@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/**
+ * @author Prenom Nom courriel
+ * @todo Lier les modules avec des instructions @import
+ * @todo Compléter selon l'énoncé de l'exercice
+ */
+
+/*
+ * ------------------
+ * TABLE DES MATIERES
+ * ------------------
+ * LIBRAIRIES
+ ** Normalize
+ *
+ * UTILITAIRES
+ ** Variables
+ ** Mixins
+ *
+ * BASE
+ ** Typographie
+ ** Hyperliens
+ ** Boutons
+ *
+ * MODULES
+ ** gds - Styles généraux du Guide de styles
+ ** palette - Palette de couleurs
+ ** listeInteractivite - Éléments interactifs
+ */
+
+/** LIBRAIRIES **/
+
+/* Normalize */
+// @use "../../node_modules/normalize.scss/normalize.scss";
+
+/** UTILITAIRES **/
+@use "utilitaires/variables";
+@use "utilitaires/mixins";
+
+/** BASE **/
+@use "base/bouton";
+@use "base/hyperlien";
+@use "base/typo";
+@use "base/grille";
+
+/** MODULES **/
+

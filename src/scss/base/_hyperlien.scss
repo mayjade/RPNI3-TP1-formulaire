@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "../utilitaires/variables";
+
+/**
+* @author Prenom Nom courriel
+* @todo Compléter selon l'énoncé de l'exercice
+*/
+
+.hyperlien {
+  color: variables.$hyperlien;
+  text-decoration: none;
+  &--visited {
+    color: color.adjust(variables.$hyperlien, $lightness: -5%);
+  }
+  &--hover {
+    color: color.adjust(variables.$hyperlien, $lightness: -20%);
+    text-decoration: underline;
+  }
+  &--active {
+    color: variables.$vertLime;
+    text-decoration: underline;
+  }
+}

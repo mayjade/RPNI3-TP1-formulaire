@@ -1,0 +1,35 @@
+@use "sass:color";
+@use "../utilitaires/variables";
+
+/**
+* @author Prenom Nom courriel
+* @todo Compléter selon l'énoncé de l'exercice
+*/
+
+.bouton {
+  background-color: variables.$vertLime;
+  border-radius: 18px;
+  color: black;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  &:after {
+    content: "»";
+    margin-left: 0.4em;
+  }
+  &--hover {
+    background-color: color.adjust(variables.$vertLime, $alpha: -0.25);
+  }
+  &--active {
+    background-color: color.adjust(variables.$vertLime, $alpha: -0.5);
+  }
+  &--inverse {
+    background-color: white;
+    border: 2px solid variables.$vertLime;
+    &--hover {
+      border-color: color.adjust(variables.$vertLime, $alpha: -0.25);
+    }
+    &--active {
+      border-color: color.adjust(variables.$vertLime, $alpha: -0.5);
+    }
+  }
+}
