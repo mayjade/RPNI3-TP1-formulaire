@@ -15,31 +15,24 @@
     <main>
     <form action="/submit" method="post">
         <fieldset>
-            <legend>Type de don</legend>
+            <legend>Don</legend>
+            <h3>Type de don:</h3>
             <label><input type="radio" name="typeDon" value="unique">Don unique</label>
             <label><input type="radio" name="typeDon" value="mensuel">Don mensuel</label>
             <span>*Veuillez sélectionner un type de don.</span>
-            <label>Montant:</label>
-                            <button type="button" value="15.00">
-                                <span>&nbsp;15 $</span>
-                            </button>
-                            <button type="button" value="25.00">
-                                <span>&nbsp;25 $</span>
-                            </button>                                                                
-                            <button type="button" value="50.00">
-                                <span>&nbsp;50 $</span>
-                            </button>
-                            <button type="button" value="75.00">
-                                <span>&nbsp;75 $</span>
-                            </button>
-                            <button type="button" value="100.00">
-                                <span>&nbsp;100 $</span>
-                            </button>
+
+            <h3>Montant</h3>
+            <label><input type="radio" name="montant" value="15.00">15$</label>
+            <label><input type="radio" name="montant" value="25.00">25$</label>
+            <label><input type="radio" name="montant" value="50.00">50$</label>
+            <label><input type="radio" name="montant" value="75.00">75$</label>
+            <label><input type="radio" name="montant" value="100.00">100$</label>
             <label>
                 Montant personnalisé:
                 <input type="text" name="montant" placeholder="0$">
             </label>
             <span>*Veuillez sélectionner un montant.</span>
+
             <button type="button">
                 <span>Précédent</span>
             </button>
@@ -78,47 +71,50 @@
                 <input type="tel" name="telephone" placeholder="(555) 123-4567" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
                 <span>*Veuillez inscrire votre numéro de téléphone.</span>
             </label>
-            <label for="country">Pays:</label>
-            <select name="country" id="country">
-                <option value="">Choisir un pays</option>
-                <option value="us">United States</option>
-                <option value="ca">Canada</option>
-                <option value="uk">United Kingdom</option>
-            </select>
-            <span>*Veuillez sélectionner un pays.</span>
-            
-          <label for="province">Province:</label>
-				<select id="province" name="province">
-                    <option value="-1">---</option>
-                        <option value="4" >Alberta</option>
-                        <option value="5" >Colombie-Britanique</option>
-                        <option value="6" >Île-du-Prince-Édouard</option>
-                        <option value="7" >Manitoba</option>
-                        <option value="8" >Nouveau-Brunswick</option>
-                        <option value="9" >Nouvelle-Écosse</option>
-                        <option value="10" >Nunavut</option>
-                        <option value="2" >Ontario</option>
-                        <option value="1" selected="selected">Québec</option>
-                        <option value="3" >Saskatchewan</option>
-                        <option value="11" >Terre-Neuve</option>
-                        <option value="12" >Territoire du Nord-Ouest</option>
-                        <option value="13" >Yukon</option>
-				</select>
-                <span>*Veuillez sélectionner une province.</span>
 
-                <span>*Veuillez entrer une adresse valide.</span>
-                    <label for="nocivique">Numéro civique</label>
-                    <input id="nocivique" name="nocivique" placeholder="No. civique" type="text" value="" maxlength="10"/>
-                    <label for="rue">Nom de la rue</label>
-                    <input name="rue" id="rue" placeholder="Nom de la rue" type="text" value="" maxlength="100"/>
-                    <label for="appbureau" class="">App. / bureau</label>
-                    <input id="appbureau" name="appbureau" type="text" placeholder="App. / bureau" value="" maxlength="25"/>
-                    <label for="ville" class="">Ville:</label>
-                    <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25"/>
-                    <label for="postalcode" class="">Code postal:</label>
-                    <input id="postalcode" name="codepostal" type="text" placeholder="A1A 1A1" value="" maxlength="6"/>
-                    <span>*Le code postal doit avoir le format A1A 1A1.</span>
+            <fieldset>
+                <legend>Adresse</legend>
+                <label for="country">Pays:</label>
+                <select name="country" id="country">
+                    <option value="">Choisir un pays</option>
+                    <option value="us">United States</option>
+                    <option value="ca">Canada</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <span>*Veuillez sélectionner un pays.</span>
+                
+            <label for="province">Province:</label>
+                    <select id="province" name="province">
+                        <option value="-1">---</option>
+                            <option value="4" >Alberta</option>
+                            <option value="5" >Colombie-Britanique</option>
+                            <option value="6" >Île-du-Prince-Édouard</option>
+                            <option value="7" >Manitoba</option>
+                            <option value="8" >Nouveau-Brunswick</option>
+                            <option value="9" >Nouvelle-Écosse</option>
+                            <option value="10" >Nunavut</option>
+                            <option value="2" >Ontario</option>
+                            <option value="1" selected="selected">Québec</option>
+                            <option value="3" >Saskatchewan</option>
+                            <option value="11" >Terre-Neuve</option>
+                            <option value="12" >Territoire du Nord-Ouest</option>
+                            <option value="13" >Yukon</option>
+                    </select>
+                    <span>*Veuillez sélectionner une province.</span>
 
+                    <span>*Veuillez entrer une adresse valide.</span>
+                        <label for="nocivique">Numéro civique</label>
+                        <input id="nocivique" name="nocivique" placeholder="No. civique" type="text" value="" maxlength="10"/>
+                        <label for="rue">Nom de la rue</label>
+                        <input name="rue" id="rue" placeholder="Nom de la rue" type="text" value="" maxlength="100"/>
+                        <label for="appbureau" class="">App. / bureau</label>
+                        <input id="appbureau" name="appbureau" type="text" placeholder="App. / bureau" value="" maxlength="25"/>
+                        <label for="ville" class="">Ville:</label>
+                        <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25"/>
+                        <label for="postalcode" class="">Code postal:</label>
+                        <input id="postalcode" name="codepostal" type="text" placeholder="A1A 1A1" value="" maxlength="6"/>
+                        <span>*Le code postal doit avoir le format A1A 1A1.</span>
+            </fieldset>
 
             <button type="button">
                 <span>Précédent</span>
@@ -133,15 +129,15 @@
             <span>*Veuillez entrer un numéro de carte de crédit valide.</span>
             <label>
                 Numéro de carte de crédit:
-                <input type="text" name="nocartecredit" placeholder="1111 1111 1111 1111" pattern="^[0-9]{12,16}$">
+                <input type="text" name="nocartecredit" inputmode="numeric" placeholder="1111 1111 1111 1111" maxlength="16" pattern="^[0-9]{12,16}$">
             </label>
             <label>
                 Date d'expiration:
-                <input type="text" name="expiration" placeholder="0628" pattern="^[0-9]{4}$">
+                <input type="month" name="expiration">
             </label>
             <label>
                 Code de sécurité:
-                <input type="text" name="codesecurite" placeholder="123" pattern="^[0-9]{3}$">
+                <input type="text" name="codesecurite" inputmode="numeric" placeholder="123" maxlength="4" pattern="^[0-9]{3}$">
             </label>
             <button type="button">
                 <span>Précédent</span>
