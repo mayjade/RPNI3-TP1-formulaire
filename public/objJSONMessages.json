@@ -1,0 +1,29 @@
+{
+    "prenom": {
+        "vide": "Vous devez entrer votre prénom.",
+        "pattern": "Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis.",
+        "type": "Erreur type"
+    },
+    "nom": {
+        "vide": "Vous devez entrer votre nom de famille.",
+        "pattern": "Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis.",
+        "type": "Erreur type"
+    },
+    "email": {
+        "vide": "Vous devez entrer votre adresse courriel.",
+        "pattern": "Assurez-vous d'entrer une adresse courriel valide.",
+        "type": "Erreur type"
+    },
+    "tel": {
+        "vide": "Vous devez entrer votre numéro de téléphone.",
+        "pattern": "Assurez-vous d'entrer un numéro de téléphone valide.",
+        "type": "Erreur type"
+    },
+    "sujet": {
+        "vide": "Vous devez entrer un sujet.",
+        "pattern": "Entrez une sujet valide."
+    },
+    "message": {
+        "vide": "Entrez un message."
+    }
+}

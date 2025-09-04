@@ -4,9 +4,13 @@
   "description": "<!--  Ce fichier README.md est une documentation de base permettant de vous orienter dans la configuration idéale de votre projet.",
   "main": "index.js",
   "scripts": {
-    "watch": "sass --watch src/scss:public/css",
-    "build": "sass src/scss:public/css --style=expanded --source-map"
+    "watch": "concurrently \"sass src/scss:public/css --source-map --watch\" \"tsc --watch\"",
+    "build": "concurrently \"sass src/scss:public/css --style=expanded --source-map\" \"tsc\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.2"
+  }
 }
