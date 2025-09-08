@@ -1,23 +1,42 @@
 {
     "prenom": {
-        "vide": "Vous devez entrer votre prénom.",
+        "vide": "Veuillez inscrire votre prénom.",
         "pattern": "Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis.",
         "type": "Erreur type"
     },
     "nom": {
-        "vide": "Vous devez entrer votre nom de famille.",
+        "vide": "Veuillez inscrire votre nom de famille.",
         "pattern": "Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis.",
         "type": "Erreur type"
     },
     "email": {
-        "vide": "Vous devez entrer votre adresse courriel.",
+        "vide": "Veuillez inscrire votre adresse courriel.",
         "pattern": "Assurez-vous d'entrer une adresse courriel valide.",
-        "type": "Erreur type"
+        "type": "Erreur type",
+        "erreursCommunes": "Voulez-vous dire {domaine}?",
+        "suspicieux": "Attention, certains domaines sont interdits"
     },
     "tel": {
-        "vide": "Vous devez entrer votre numéro de téléphone.",
+        "vide": "Veuillez inscrire votre numéro de téléphone.",
         "pattern": "Assurez-vous d'entrer un numéro de téléphone valide.",
         "type": "Erreur type"
+    },
+    "adresse": {
+        "vide": "Veuillez inscrire votre adresse."
+    },
+    "ville": {
+        "vide": "Veuillez inscrire votre ville."
+    },
+    "postalcode": {
+        "vide": "Veuillez inscrire votre code postal.",
+        "pattern": "Le code postal doit avoir le format A1A 1A1.",
+        "type": "Erreur type"
+    },
+    "typeDon": {
+        "vide": "Veuillez sélectionner un type de don."
+    },
+    "montant": {
+        "vide": "Veuillez sélectionner un montant."
     },
     "sujet": {
         "vide": "Vous devez entrer un sujet.",

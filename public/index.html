@@ -15,8 +15,8 @@
         <nav aria-label="Principal">
             <ol>
                 <li id="etat1">
-                    <a href="#"><span class="hors-ecran">Étape 1 </span>
-                        Don</a>
+                    <span class="hors-ecran">Étape 1 </span>
+                        Don
                 </li>
                 <li aria-current="step" id="etat2">
                     <span class="hors-ecran">Étape 2 </span>
@@ -34,12 +34,12 @@
     <form id="formulaire" action="/submit" method="post">
         <fieldset name="etape" id="etape1">
             <legend>Don</legend>
-            <fieldset aria-invalid="true" aria-describedby="err_type_don" role="radiogroup" required>
+            <fieldset aria-invalid="true" aria-describedby="err_typeDon" role="radiogroup" required>
                 <legend>Type de don:</legend>
-                <label><input type="radio" name="typeDon" value="unique" aria-describedby="err_type_don">Don unique</label>
-                <label><input type="radio" name="typeDon" value="mensuel" aria-describedby="err_type_don">Don mensuel</label>
+                <label><input type="radio" name="typeDon" value="unique" aria-describedby="err_typeDon">Don unique</label>
+                <label><input type="radio" name="typeDon" value="mensuel" aria-describedby="err_typeDon">Don mensuel</label>
             </fieldset>
-            <span id="err_type_don" role="alert" aria-live="polite">*Veuillez sélectionner un type de don.</span>
+            <span id="err_typeDon" class="erreur" role="alert" aria-live="polite"></span>
 
             <fieldset aria-invalid="true" aria-describedby="err_montant" role="radiogroup" required>
                 <legend>Montant</legend>
@@ -53,7 +53,7 @@
                     <input type="text" name="montant" placeholder="0$">
                 </label>
             </fieldset>
-            <span id="err_montant" role="alert" aria-live="polite">*Veuillez sélectionner un montant.</span>
+            <span id="err_montant" class="erreur" role="alert" aria-live="polite"></span>
         </fieldset>
 
         <fieldset name="etape" id="etape2">
@@ -61,30 +61,25 @@
             <label>
                 Prénom:*
                 <input type="text" id="prenom" name="prenom" placeholder="Prénom" aria-describedby="txt" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_prenom" required>
-                <span id="err_prenom" role="alert" aria-live="polite">*Veuillez inscrire votre prénom.</span>
+                <span id="err_prenom" class="erreur" role="alert" aria-live="polite"></span>
             </label>
             <label>
                 Nom:*
                 <input type="text" id="nom" name="nom" placeholder="Nom" aria-describedby="txt" autocomplete="family-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nom" required>
-                <span id="err_nom" role="alert" aria-live="polite">*Veuillez inscrire votre nom.</span>
-            </label>
-            <label>
-                Mot de passe:*
-                <input type="password" id="mdp" name="password" placeholder="Mot de passe" autocomplete="new-password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$" aria-invalid="true" aria-describedby="err_mdp" required>
-                <span id="err_mdp" role="alert" aria-live="polite">*Veuillez inscrire un mot de passe valide. Celui-ci doit contenir au minimum une lettre, un chiffre et un caractère spécial.</span>
+                <span id="err_nom" class="erreur" role="alert" aria-live="polite"></span>
             </label>
             <label>
                 Courriel:*
                 <input type="email" id="email" name="email" placeholder="Courriel" autocomplete="email" pattern="
-                ^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" aria-invalid="true" aria-describedby="err_email" required>
-                <span id="err_email" role="alert" aria-live="polite">*Veuillez entrer un courriel valide.</span>
+                ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-invalid="true" aria-describedby="err_email" required>
+                <span id="err_email" class="erreur" role="alert" aria-live="polite"></span>
             </label>
             <input type="checkbox" name="infolettre" id="infolettre">
             <label for="infolettre"><small>Je veux être au courant des nouveautés chez Équiterre.</small></label>
             <label>
                 Téléphone:*
-                <input type="tel" id="tel" name="telephone" placeholder="(555) 123-4567" autocomplete="tel" pattern="^\(?([0-9]{3})\)?[ ]?([0-9]{3})[-]?([0-9]{4})$" aria-invalid="true" aria-describedby="err_tel" required>
-                <span id="err_tel" role="alert" aria-live="polite">*Veuillez inscrire votre numéro de téléphone.</span>
+                <input type="tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-invalid="true" aria-describedby="err_tel" required>
+                <span id="err_tel" class="erreur" role="alert" aria-live="polite"></span>
             </label>
 
             <fieldset>
@@ -92,42 +87,43 @@
                 <label for="country">Pays:</label>
                 <select name="country" id="country" aria-invalid="true" aria-describedby="err_country" required>
                     <option value="">Choisir un pays</option>
-                    <option value="us">United States</option>
-                    <option value="ca">Canada</option>
-                    <option value="uk">United Kingdom</option>
                 </select>
-                <span id="err_country" role="alert" aria-live="polite">*Veuillez sélectionner un pays.</span>
-                
-            <label for="province">Province:</label>
-                    <select id="province" name="province" aria-invalid="true" aria-describedby="err_province" required>
-                        <option value="-1">---</option>
-                            <option value="4" >Alberta</option>
-                            <option value="5" >Colombie-Britanique</option>
-                            <option value="6" >Île-du-Prince-Édouard</option>
-                            <option value="7" >Manitoba</option>
-                            <option value="8" >Nouveau-Brunswick</option>
-                            <option value="9" >Nouvelle-Écosse</option>
-                            <option value="10" >Nunavut</option>
-                            <option value="2" >Ontario</option>
-                            <option value="1" selected="selected">Québec</option>
-                            <option value="3" >Saskatchewan</option>
-                            <option value="11" >Terre-Neuve</option>
-                            <option value="12" >Territoire du Nord-Ouest</option>
-                            <option value="13" >Yukon</option>
-                    </select>
-                    <span id="err_province" role="alert" aria-live="polite">*Veuillez sélectionner une province.</span>
+                <span id="err_country" class="erreur" role="alert" aria-live="polite">*Veuillez sélectionner un pays.</span>
+            
+            <div id="provinceConteneur">
+                <label for="province">Province:</label>
+                <select id="province" name="province" aria-invalid="true" aria-describedby="err_province" required>
+                    <option value="-1">---</option>
+                        <option value="4" >Alberta</option>
+                        <option value="5" >Colombie-Britanique</option>
+                        <option value="6" >Île-du-Prince-Édouard</option>
+                        <option value="7" >Manitoba</option>
+                        <option value="8" >Nouveau-Brunswick</option>
+                        <option value="9" >Nouvelle-Écosse</option>
+                        <option value="10" >Nunavut</option>
+                        <option value="2" >Ontario</option>
+                        <option value="1" selected="selected">Québec</option>
+                        <option value="3" >Saskatchewan</option>
+                        <option value="11" >Terre-Neuve</option>
+                        <option value="12" >Territoire du Nord-Ouest</option>
+                        <option value="13" >Yukon</option>
+                </select>
+                <span id="err_province" class="erreur" role="alert" aria-live="polite">*Veuillez sélectionner une province.</span>
+            </div>
+            
 
                     
                         <label for="adresse">Adresse*</label>
                         <input name="adresse" id="adresse" placeholder="adresse" type="text" autocomplete="street-address" value="" maxlength="100" pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" aria-invalid="true" aria-describedby="err_address" required/>
-                        <span id="err_address" role="alert" aria-live="polite">*Veuillez entrer une adresse valide.</span>
+                        <span id="err_adresse" class="erreur" role="alert" aria-live="polite"></span>
                         <label for="appbureau" class="">App. / bureau</label>
                         <input id="appbureau" name="appbureau" type="text" placeholder="App. / bureau" value="" maxlength="25"/>
                         <label for="ville" class="">Ville:</label>
                         <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25" aria-invalid="true" required/>
+                        <span id="err_ville" class="erreur" role="alert" aria-live="polite"></span>
                         <label for="postalcode" class="">Code postal:</label>
-                        <input id="postalcode" name="codepostal" type="text" autocomplete="postal-code" placeholder="A1A 1A1" value="" maxlength="6" pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$" aria-invalid="true" aria-describedby="err_postalcode" required/>
-                        <span id="err_postalcode" role="alert" aria-live="polite">*Le code postal doit avoir le format A1A 1A1.</span>
+                        <input id="postalcode" name="codepostal" type="text" autocomplete="postal-code" placeholder="A1A 1A1" value="" maxlength="7" pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$" aria-invalid="true" aria-describedby="err_postalcode" required/>
+                        <span id="err_postalcode" class="erreur" role="alert" aria-live="polite"></span>
             </fieldset>
 
         
@@ -140,18 +136,18 @@
                 Numéro de carte de crédit:
                 <input type="text" name="nocartecredit" inputmode="numeric" autocomplete="cc-number" placeholder="1111 1111 1111 1111" maxlength="16" pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$" aria-invalid="true" aria-describedby="err_cc" required>
             </label>
-            <span id="err_cc" role="alert" aria-live="polite">*Veuillez entrer un numéro de carte de crédit valide.</span>
+            <span id="err_cc" class="erreur" role="alert" aria-live="polite">*Veuillez entrer un numéro de carte de crédit valide.</span>
             <label>
                 Date d'expiration:
                 <input type="month" name="expiration" autocomplete="cc-exp" aria-invalid="true" aria-describedby="err_expiration" required>
             </label>
-            <span id="err_expiration" role="alert" aria-live="polite">*Veuillez entrer une date d'expiration valide.</span>
+            <span id="err_expiration" class="erreur" role="alert" aria-live="polite">*Veuillez entrer une date d'expiration valide.</span>
             <label>
                 Code de sécurité:
                 <input type="text" name="codesecurite" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" pattern="^[0-9]{3}$" aria-invalid="true" aria-describedby="err_securitycode" required>
             </label>
-            <span id="err_securitycode" role="alert" aria-live="polite">*Veuillez entrer un code de sécurité valide.</span>
-            <span id="err_paiement" role="alert" aria-live="polite">*Veuillez entrer un mode de paiement valide.</span>
+            <span id="err_securitycode" class="erreur" role="alert" aria-live="polite">*Veuillez entrer un code de sécurité valide.</span>
+            <span id="err_paiement" class="erreur" role="alert" aria-live="polite">*Veuillez entrer un mode de paiement valide.</span>
             <h2>Résumé du don</h2>
             <p>Prénom Nom</p>
             <p>Montant de 25$ mensuel</p>
