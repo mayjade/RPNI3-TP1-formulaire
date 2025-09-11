@@ -10,6 +10,10 @@ const provinceConteneur = document.getElementById('provinceConteneur') as HTMLSe
 const inputPays = document.getElementById('country') as HTMLSelectElement;
 const inputProvince = document.getElementById('province') as HTMLSelectElement;
 
+  // la date d'aujourd'hui a été trouvée à l'aide de chat GPT
+  const today = new Date();
+  const dateAuj = today.toLocaleDateString("fr-CA"); 
+
 interface messageErreur {
     vide?:string;
     pattern?:string;
@@ -51,6 +55,9 @@ function initialiser(){
         if(btnSuivant){
             btnSuivant.addEventListener('click', changerEtape);
         }
+        if(btnEnvoyer){
+            btnEnvoyer.addEventListener('click', changerEtape);
+        }
         if(champEmail){
             champEmail.addEventListener('change', faireValiderEmail);
         }
@@ -59,18 +66,17 @@ function initialiser(){
         afficherEtape(0);
         obtenirMessages();
         obtenirPays();
+
 }
 
 async function obtenirMessages(): Promise<void> {
     const reponse = await fetch('objJSONMessages.json');
     messagesJson = await reponse.json();
-    console.log(messagesJson);
 }
 
 async function obtenirPays(): Promise<void> {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
-    console.log(paysJson);
 
     paysJson.pays.forEach((region: paysRegion) => {
         const elementRegion = document.createElement('option');
@@ -94,7 +100,6 @@ async function obtenirPays(): Promise<void> {
 async function obtenirProvince(): Promise<void> {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
-    console.log(paysJson);
 
     const inputProvince = document.getElementById('province') as HTMLSelectElement;
 
@@ -262,17 +267,45 @@ function validerEtape(etape: number):boolean{
                         errProvince!.innerText = messagesJson["province"].vide ?? "";
                     }
                 }
+                else{
+                    provinceValide = true;
+                }
             }
             else{
                 errPays!.innerText = messagesJson["pays"].vide ?? "";
             }
-            if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide && provinceValide){
+            if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
                 valide = true;
             }
-// ajouter les autres cas avec les nouveaux champs
         break;
         case 2:
-            valide = true;
+            const titulaireElement = document.getElementById('titulaire')  as HTMLInputElement;
+            const titulaireValide = validerChamp(titulaireElement);
+            const creditElement = document.getElementById('cc')  as HTMLInputElement;
+            const creditValide = validerChamp(creditElement);
+            const codeElement = document.getElementById('securitycode')  as HTMLInputElement;
+            const codeValide = validerChamp(codeElement);
+            const moisElement = document.getElementById('expiration')  as HTMLInputElement;
+            const errMois = document.getElementById("err_expiration");
+            let moisValide = false;
+            
+            if(moisElement.value){
+                if(moisElement.value > dateAuj){
+                    moisValide = true;
+                    errMois!.innerText = "";
+                }
+                else{
+                    moisValide = false;
+                    errMois!.innerText = messagesJson["expiration"].pattern ?? "";
+                }
+            }
+            else{
+                moisValide = false;
+                errMois!.innerText = messagesJson["expiration"].vide ?? "";
+            }
+            if(titulaireValide && creditValide && codeValide && moisValide){
+                valide = true;
+            }
         break;
     }
 
@@ -314,7 +347,7 @@ function changerEtape(event: MouseEvent){
     if(etapeValide == true){
         if (noEtape < 3) {
             noEtape++;
-        console.log(noEtape); 
+        console.log('#etape ' + noEtape); 
         afficherEtape(noEtape);
         }
     }
@@ -330,6 +363,5 @@ function cacherFieldsets(){
 
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
-// message erreur en rouge
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard

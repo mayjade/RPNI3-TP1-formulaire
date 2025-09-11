@@ -44,6 +44,22 @@
     "province": {
         "vide": "Veuillez sélectionner une province."
     },
+    "titulaire": {
+        "vide": "Veuillez entrer le nom complet du titulaire de la carte de crédit.",
+        "pattern": "Pour le nom du titulaire, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
+    "cc": {
+         "vide": "Veuillez entrer un numéro de carte de crédit.",
+         "pattern": "Le numéro de la carte de crédit doit comprendre en 12 et 16 chiffres."
+    },
+    "expiration": {
+        "vide": "Veuillez sélectionner une date d'expiration.",
+        "pattern": "La carte de crédit ne doit pas être déjà expirée."
+   },
+    "securitycode": {
+        "vide": "Veuillez entrer le code de sécurité.",
+        "pattern": "Le code de sécurité doit comprendre entre 3 et 4 chiffres."
+    },
     "sujet": {
         "vide": "Vous devez entrer un sujet.",
         "pattern": "Entrez une sujet valide."

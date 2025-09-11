@@ -9,6 +9,9 @@ let messagesJson;
 const provinceConteneur = document.getElementById('provinceConteneur');
 const inputPays = document.getElementById('country');
 const inputProvince = document.getElementById('province');
+// la date d'aujourd'hui a été trouvée à l'aide de chat GPT
+const today = new Date();
+const dateAuj = today.toLocaleDateString("fr-CA");
 let paysJson;
 initialiser();
 function initialiser() {
@@ -27,6 +30,9 @@ function initialiser() {
     if (btnSuivant) {
         btnSuivant.addEventListener('click', changerEtape);
     }
+    if (btnEnvoyer) {
+        btnEnvoyer.addEventListener('click', changerEtape);
+    }
     if (champEmail) {
         champEmail.addEventListener('change', faireValiderEmail);
     }
@@ -38,12 +44,10 @@ function initialiser() {
 async function obtenirMessages() {
     const reponse = await fetch('objJSONMessages.json');
     messagesJson = await reponse.json();
-    console.log(messagesJson);
 }
 async function obtenirPays() {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
-    console.log(paysJson);
     paysJson.pays.forEach((region) => {
         const elementRegion = document.createElement('option');
         elementRegion.value = region.code;
@@ -64,7 +68,6 @@ async function obtenirPays() {
 async function obtenirProvince() {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
-    console.log(paysJson);
     const inputProvince = document.getElementById('province');
     paysJson.provinces.forEach((region) => {
         const elementRegion = document.createElement('option');
@@ -213,17 +216,44 @@ function validerEtape(etape) {
                         errProvince.innerText = messagesJson["province"].vide ?? "";
                     }
                 }
+                else {
+                    provinceValide = true;
+                }
             }
             else {
                 errPays.innerText = messagesJson["pays"].vide ?? "";
             }
-            if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide && provinceValide) {
+            if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
                 valide = true;
             }
-            // ajouter les autres cas avec les nouveaux champs
             break;
         case 2:
-            valide = true;
+            const titulaireElement = document.getElementById('titulaire');
+            const titulaireValide = validerChamp(titulaireElement);
+            const creditElement = document.getElementById('cc');
+            const creditValide = validerChamp(creditElement);
+            const codeElement = document.getElementById('securitycode');
+            const codeValide = validerChamp(codeElement);
+            const moisElement = document.getElementById('expiration');
+            const errMois = document.getElementById("err_expiration");
+            let moisValide = false;
+            if (moisElement.value) {
+                if (moisElement.value > dateAuj) {
+                    moisValide = true;
+                    errMois.innerText = "";
+                }
+                else {
+                    moisValide = false;
+                    errMois.innerText = messagesJson["expiration"].pattern ?? "";
+                }
+            }
+            else {
+                moisValide = false;
+                errMois.innerText = messagesJson["expiration"].vide ?? "";
+            }
+            if (titulaireValide && creditValide && codeValide && moisValide) {
+                valide = true;
+            }
             break;
     }
     return valide;
@@ -261,7 +291,7 @@ function changerEtape(event) {
     if (etapeValide == true) {
         if (noEtape < 3) {
             noEtape++;
-            console.log(noEtape);
+            console.log('#etape ' + noEtape);
             afficherEtape(noEtape);
         }
     }
@@ -273,6 +303,5 @@ function cacherFieldsets() {
 }
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
-// message erreur en rouge
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
