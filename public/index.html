@@ -14,15 +14,16 @@
         <h1>Faites un don chez Équiterre</h1>
         <nav aria-label="Principal">
             <ol>
-                <li id="etat1">
+                <li aria-current="step" id="etat1">
+                    <a href="index.html" aria-current="page">
                     <span class="hors-ecran">Étape 1 </span>
-                        Don
+                    Montant</a>
                 </li>
-                <li aria-current="step" id="etat2">
+                <li  id="etat2">
                     <span class="hors-ecran">Étape 2 </span>
                     Coordonnées
                 </li>
-                <li aria-current="step" id="etat3">
+                <li id="etat3">
                     <span class="hors-ecran">Étape 3 </span>
                     Paiement
                 </li>
@@ -88,28 +89,15 @@
                 <select name="country" id="country" aria-invalid="true" aria-describedby="err_country" required>
                     <option value="">Choisir un pays</option>
                 </select>
-                <span id="err_country" class="erreur" role="alert" aria-live="polite">*Veuillez sélectionner un pays.</span>
+                <span id="err_country" class="erreur" role="alert" aria-live="polite"></span>
             
-            <div id="provinceConteneur">
-                <label for="province">Province:</label>
-                <select id="province" name="province" aria-invalid="true" aria-describedby="err_province" required>
-                    <option value="-1">---</option>
-                        <option value="4" >Alberta</option>
-                        <option value="5" >Colombie-Britanique</option>
-                        <option value="6" >Île-du-Prince-Édouard</option>
-                        <option value="7" >Manitoba</option>
-                        <option value="8" >Nouveau-Brunswick</option>
-                        <option value="9" >Nouvelle-Écosse</option>
-                        <option value="10" >Nunavut</option>
-                        <option value="2" >Ontario</option>
-                        <option value="1" selected="selected">Québec</option>
-                        <option value="3" >Saskatchewan</option>
-                        <option value="11" >Terre-Neuve</option>
-                        <option value="12" >Territoire du Nord-Ouest</option>
-                        <option value="13" >Yukon</option>
-                </select>
-                <span id="err_province" class="erreur" role="alert" aria-live="polite">*Veuillez sélectionner une province.</span>
-            </div>
+                <div id="provinceConteneur">
+                    <label for="province">Province:</label>
+                    <select id="province" name="province" aria-invalid="true" aria-describedby="err_province">
+                        <option value="">Choisir une province</option>
+                    </select>
+                    <span id="err_province" class="erreur" role="alert" aria-live="polite"></span>
+                </div>
             
 
                     

@@ -6,10 +6,16 @@ let noEtape: number = 0;
 let etapes: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll('[name="etape"]');
 let messagesJson: ErreurJSON;
 
+const provinceConteneur = document.getElementById('provinceConteneur') as HTMLSelectElement;
+const inputPays = document.getElementById('country') as HTMLSelectElement;
+const inputProvince = document.getElementById('province') as HTMLSelectElement;
+
 interface messageErreur {
     vide?:string;
     pattern?:string;
     type?:string;
+    erreursCommunes?: string;
+    suspicieux?: string;
 }
 interface ErreurJSON{
     [fieldname:string]:messageErreur;
@@ -21,9 +27,9 @@ interface paysRegion {
     code:string;
 }
 interface paysProvinces {
-    pays:string;
-    provinces:string;
-    etats:string;
+    pays:paysRegion[];
+    provinces:paysRegion[];
+    etats:paysRegion[];
 }
 
 initialiser();
@@ -49,6 +55,7 @@ function initialiser(){
             champEmail.addEventListener('change', faireValiderEmail);
         }
 
+        provinceConteneur.classList.add('cacher');
         afficherEtape(0);
         obtenirMessages();
         obtenirPays();
@@ -65,9 +72,6 @@ async function obtenirPays(): Promise<void> {
     paysJson = await reponse.json();
     console.log(paysJson);
 
-    const inputPays = document.getElementById('country') as HTMLSelectElement;
-    const provinceConteneur = document.getElementById('provinceConteneur');
-
     paysJson.pays.forEach((region: paysRegion) => {
         const elementRegion = document.createElement('option');
         elementRegion.value = region.code;
@@ -78,9 +82,28 @@ async function obtenirPays(): Promise<void> {
     // afficher liste provinces seulement si canada est selectionné
     inputPays.addEventListener('change', () => {
         if(inputPays.value == 'CA'){
-            
+            obtenirProvince();
+            provinceConteneur.classList.remove('cacher');
+        }
+        else{
+            provinceConteneur.classList.add('cacher');
         }
     })
+}
+
+async function obtenirProvince(): Promise<void> {
+    const reponse = await fetch('pays_prov_etats.json');
+    paysJson = await reponse.json();
+    console.log(paysJson);
+
+    const inputProvince = document.getElementById('province') as HTMLSelectElement;
+
+    paysJson.provinces.forEach((region: paysRegion) => {
+        const elementRegion = document.createElement('option');
+        elementRegion.value = region.code;
+        elementRegion.textContent = region.name;
+        inputProvince.appendChild(elementRegion);
+    });
 }
 
 function validerChamp(champ:HTMLInputElement): boolean {
@@ -120,7 +143,7 @@ function validerEmail(champ:HTMLInputElement):boolean{
         '.party'
     ];
 
-    const erreursCommunes = {
+    const erreursCommunes: {[key: string]: string } = {
         'hotnail': 'hotmail',
         'gnail': 'gmail',
         'yahooo': 'yahoo'
@@ -159,7 +182,7 @@ function validerEmail(champ:HTMLInputElement):boolean{
             const domaineCorrect = erreursCommunes[erreurCle];
             const monMessage = messagesJson[id].erreursCommunes?.replace('{domaine}', domaineCorrect);
             valide = false; 
-            errElement!.innerText = monMessage;
+            errElement!.innerText = monMessage ?? "";
         } else {
             valide = true;
             errElement!.innerText = '';
@@ -186,7 +209,7 @@ function validerEtape(etape: number):boolean{
             }
             else{
                 valide = false;
-                errElementDon!.innerText = messagesJson["typeDon"].vide;
+                errElementDon!.innerText = messagesJson["typeDon"].vide ?? "";
             }
 
             const montantElement = document.querySelector('[name=montant]:checked') as HTMLInputElement;
@@ -196,7 +219,7 @@ function validerEtape(etape: number):boolean{
             }
             else{
                 valide = false;
-                errElementMontant!.innerText = messagesJson["montant"].vide;
+                errElementMontant!.innerText = messagesJson["montant"].vide ?? "";
             }
 
             if(typeDonElement != null && montantElement != null){
@@ -221,8 +244,29 @@ function validerEtape(etape: number):boolean{
             const adresseValide = validerChamp(adresseElement);
             const villeValide = validerChamp(villeElement);
             const postalValide = validerChamp(postalElement);
+            let paysValide = false;
+            const errPays = document.getElementById("err_country");
+            let provinceValide = false;
+            const errProvince = document.getElementById("err_province");
 
-            if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide){
+            if(inputPays.value != ""){
+                paysValide = true;
+                errPays!.innerText = '';
+
+                if(inputPays.value == 'CA'){
+                    if(inputProvince.value != ""){
+                        provinceValide = true;
+                        errProvince!.innerText = '';
+                    }
+                    else{
+                        errProvince!.innerText = messagesJson["province"].vide ?? "";
+                    }
+                }
+            }
+            else{
+                errPays!.innerText = messagesJson["pays"].vide ?? "";
+            }
+            if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide && provinceValide){
                 valide = true;
             }
 // ajouter les autres cas avec les nouveaux champs

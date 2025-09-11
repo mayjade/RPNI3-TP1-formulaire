@@ -6,6 +6,9 @@ let champEmail;
 let noEtape = 0;
 let etapes = document.querySelectorAll('[name="etape"]');
 let messagesJson;
+const provinceConteneur = document.getElementById('provinceConteneur');
+const inputPays = document.getElementById('country');
+const inputProvince = document.getElementById('province');
 let paysJson;
 initialiser();
 function initialiser() {
@@ -27,6 +30,7 @@ function initialiser() {
     if (champEmail) {
         champEmail.addEventListener('change', faireValiderEmail);
     }
+    provinceConteneur.classList.add('cacher');
     afficherEtape(0);
     obtenirMessages();
     obtenirPays();
@@ -40,8 +44,6 @@ async function obtenirPays() {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
     console.log(paysJson);
-    const inputPays = document.getElementById('country');
-    const provinceConteneur = document.getElementById('provinceConteneur');
     paysJson.pays.forEach((region) => {
         const elementRegion = document.createElement('option');
         elementRegion.value = region.code;
@@ -51,7 +53,24 @@ async function obtenirPays() {
     // afficher liste provinces seulement si canada est selectionné
     inputPays.addEventListener('change', () => {
         if (inputPays.value == 'CA') {
+            obtenirProvince();
+            provinceConteneur.classList.remove('cacher');
         }
+        else {
+            provinceConteneur.classList.add('cacher');
+        }
+    });
+}
+async function obtenirProvince() {
+    const reponse = await fetch('pays_prov_etats.json');
+    paysJson = await reponse.json();
+    console.log(paysJson);
+    const inputProvince = document.getElementById('province');
+    paysJson.provinces.forEach((region) => {
+        const elementRegion = document.createElement('option');
+        elementRegion.value = region.code;
+        elementRegion.textContent = region.name;
+        inputProvince.appendChild(elementRegion);
     });
 }
 function validerChamp(champ) {
@@ -123,7 +142,7 @@ function validerEmail(champ) {
             const domaineCorrect = erreursCommunes[erreurCle];
             const monMessage = messagesJson[id].erreursCommunes?.replace('{domaine}', domaineCorrect);
             valide = false;
-            errElement.innerText = monMessage;
+            errElement.innerText = monMessage ?? "";
         }
         else {
             valide = true;
@@ -147,7 +166,7 @@ function validerEtape(etape) {
             }
             else {
                 valide = false;
-                errElementDon.innerText = messagesJson["typeDon"].vide;
+                errElementDon.innerText = messagesJson["typeDon"].vide ?? "";
             }
             const montantElement = document.querySelector('[name=montant]:checked');
             const errElementMontant = document.getElementById("err_montant");
@@ -156,7 +175,7 @@ function validerEtape(etape) {
             }
             else {
                 valide = false;
-                errElementMontant.innerText = messagesJson["montant"].vide;
+                errElementMontant.innerText = messagesJson["montant"].vide ?? "";
             }
             if (typeDonElement != null && montantElement != null) {
                 valide = true;
@@ -178,7 +197,27 @@ function validerEtape(etape) {
             const adresseValide = validerChamp(adresseElement);
             const villeValide = validerChamp(villeElement);
             const postalValide = validerChamp(postalElement);
-            if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide) {
+            let paysValide = false;
+            const errPays = document.getElementById("err_country");
+            let provinceValide = false;
+            const errProvince = document.getElementById("err_province");
+            if (inputPays.value != "") {
+                paysValide = true;
+                errPays.innerText = '';
+                if (inputPays.value == 'CA') {
+                    if (inputProvince.value != "") {
+                        provinceValide = true;
+                        errProvince.innerText = '';
+                    }
+                    else {
+                        errProvince.innerText = messagesJson["province"].vide ?? "";
+                    }
+                }
+            }
+            else {
+                errPays.innerText = messagesJson["pays"].vide ?? "";
+            }
+            if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide && provinceValide) {
                 valide = true;
             }
             // ajouter les autres cas avec les nouveaux champs

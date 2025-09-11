@@ -38,6 +38,12 @@
     "montant": {
         "vide": "Veuillez sélectionner un montant."
     },
+    "pays": {
+        "vide": "Veuillez sélectionner un pays."
+    },
+    "province": {
+        "vide": "Veuillez sélectionner une province."
+    },
     "sujet": {
         "vide": "Vous devez entrer un sujet.",
         "pattern": "Entrez une sujet valide."
@@ -45,4 +51,5 @@
     "message": {
         "vide": "Entrez un message."
     }
+  
 }
