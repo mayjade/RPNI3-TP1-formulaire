@@ -7,29 +7,40 @@
 */
 
 .bouton {
-  background-color: variables.$vertLime;
-  border-radius: 18px;
-  color: black;
-  padding: 0.5em 1em;
+  background-color: variables.$vert;
+  border-radius: 8px;
+  border: none;
+  color: variables.$blanc;
+  padding: .8em 1em;
   text-decoration: none;
-  &:after {
-    content: "»";
-    margin-left: 0.4em;
-  }
-  &--hover {
-    background-color: color.adjust(variables.$vertLime, $alpha: -0.25);
-  }
-  &--active {
-    background-color: color.adjust(variables.$vertLime, $alpha: -0.5);
-  }
-  &--inverse {
-    background-color: white;
-    border: 2px solid variables.$vertLime;
-    &--hover {
-      border-color: color.adjust(variables.$vertLime, $alpha: -0.25);
-    }
-    &--active {
-      border-color: color.adjust(variables.$vertLime, $alpha: -0.5);
-    }
-  }
+  font-family: 'Kaisei Opti';
+  font-size: 18px;
+  text-transform: uppercase;
+
+  // :hover{
+  //   background-color: white;
+  //   border: 2px solid variables.$vert;
+  // }
 }
+
+.bouton:hover{
+  background-color: white;
+  border: 2px solid variables.$vert;
+  color: variables.$vert;
+}
+
+input[type=radio] + label{
+  color: variables.$vert;
+  font-family: 'Kaisei Opti';
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 1em 2em;
+}
+
+
+input[type=radio]:checked + label {
+    border-bottom: 2px solid variables.$vert;
+    padding-bottom: .5em;
+}
+

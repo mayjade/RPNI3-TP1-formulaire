@@ -11,28 +11,32 @@
 /** Polices de caractères **/
 
 @font-face {
-  font-family: Futura, sans-serif;
-  src: 	url('../fonts/Futura.ttc') format('truetype');
+  font-family: Kaisei Opti, sans-serif;
+  src: 	url('../fonts/Kaisei_Opti/KaiseiOpti-Bold.ttf') format('truetype');
 }
 
-$fontePrimaire : Futura, sans-serif;
-$fonteSecondaire : Arial, sans-serif;
+@font-face {
+  font-family: Jomolhari, sans-serif;
+  src: 	url('../fonts/Jomolhari/Jomolhari-Regular.ttf') format('truetype');
+}
+
+$titre : Kaisei Opti, sans-serif;
+$texte : Jomolhari, sans-serif;
 
 /** Palette de couleurs **/
 // Utiliser http://chir.ag/projects/name-that-color pour obtenir des noms uniques et mémorisables
 // Permettez-vous d'utiliser un nom de variable plus explicite si la suggestion de name-that-color est trop étrange
 
 /* Couleurs de base */
-$bleuMoyen: #358ae0;
-$bleuPale: #68a8e8;
-$vertLime: #bbd531;
-$bleuMinuit: #012d61;
-$bleuMarin: #2678B5;
+$lime: #E9F5AF;
+$vert: #A49E3B;
+$orange: #FF6A0E;
+$brun: #6B2D08;
+$rouge: #FF0000;
+$noir: #000;
+$blanc: #FFF;
 
-$bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
-
-/* Autres couleurs */
-$hyperlien: $bleuMarin;
+// $bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
 
 /** Points de rupture **/
 $desktop : 601px;

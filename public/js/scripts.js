@@ -9,6 +9,9 @@ let messagesJson;
 const provinceConteneur = document.getElementById('provinceConteneur');
 const inputPays = document.getElementById('country');
 const inputProvince = document.getElementById('province');
+const autreMontant = document.getElementById('autreMontant');
+const inputMontant = document.getElementById('montantPerso');
+const radioMontant = document.querySelectorAll('input[name="montant"]');
 // la date d'aujourd'hui a été trouvée à l'aide de chat GPT
 const today = new Date();
 const dateAuj = today.toLocaleDateString("fr-CA");
@@ -36,10 +39,22 @@ function initialiser() {
     if (champEmail) {
         champEmail.addEventListener('change', faireValiderEmail);
     }
+    radioMontant.forEach(montant => {
+        montant.addEventListener('change', ajouterChampMontant);
+    });
     provinceConteneur.classList.add('cacher');
+    inputMontant.classList.add('cacher');
     afficherEtape(0);
     obtenirMessages();
     obtenirPays();
+}
+function ajouterChampMontant() {
+    if (autreMontant?.checked) {
+        inputMontant?.classList.remove('cacher');
+    }
+    else {
+        inputMontant?.classList.add('cacher');
+    }
 }
 async function obtenirMessages() {
     const reponse = await fetch('objJSONMessages.json');
@@ -80,7 +95,7 @@ function validerChamp(champ) {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "err_" + id;
-    console.log(idMessageErreur);
+    // console.log(idMessageErreur);
     const errElement = document.getElementById(idMessageErreur);
     console.log('valider champ', champ.validity);
     if (champ.validity.valueMissing && messagesJson[id].vide) {
@@ -120,13 +135,13 @@ function validerEmail(champ) {
     const errElement = document.getElementById(idMessageErreur);
     const leEmail = champ.value;
     const expRegEmail = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-    if (!expRegEmail.test(leEmail) && messagesJson[id].pattern) {
-        valide = false;
-        errElement.innerText = messagesJson[id].pattern;
-    }
-    else if (champ.validity.valueMissing && messagesJson[id].vide) {
+    if (champ.validity.valueMissing && messagesJson[id].vide) {
         valide = false;
         errElement.innerText = messagesJson[id].vide;
+    }
+    else if (!expRegEmail.test(leEmail) && messagesJson[id].pattern) {
+        valide = false;
+        errElement.innerText = messagesJson[id].pattern;
     }
     else if (champ.validity.typeMismatch && messagesJson[id].type) {
         valide = false;
@@ -194,8 +209,7 @@ function validerEtape(etape) {
             const postalElement = document.getElementById('postalcode');
             const nomValide = validerChamp(nomElement);
             const prenomValide = validerChamp(prenomElement);
-            // const emailValide = validerEmail(emailElement);
-            const emailValide = validerChamp(emailElement);
+            const emailValide = validerEmail(emailElement);
             const telValide = validerChamp(telElement);
             const adresseValide = validerChamp(adresseElement);
             const villeValide = validerChamp(villeElement);
@@ -301,7 +315,10 @@ function cacherFieldsets() {
         section.classList.add('cacher');
     });
 }
+// TO-DO
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
+// champ telephone que accepte n'importe quoi
+// navigation steps left

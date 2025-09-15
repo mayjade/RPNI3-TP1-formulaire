@@ -44,11 +44,6 @@
 @use "base/grille";
 
 /** MODULES **/
+@use "layout/formulaire";
+@use "modules/actions";
 
-.cacher{
-    display: none;
-}
-
-.erreur{
-    color: red;
-}

@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <h1>Faites un don chez Équiterre</h1>
+        <h1>Faire un don</h1>
         <nav aria-label="Principal">
             <ol>
                 <li aria-current="step" id="etat1">
@@ -32,33 +32,45 @@
     </header>
     
     <main>
-    <form id="formulaire" action="/submit" method="post">
+    <form class="formulaire" id="formulaire" action="/submit" method="post">
         <fieldset name="etape" id="etape1">
-            <legend>Don</legend>
+            <legend class="titreNiveau2">1. Montant</legend>
             <fieldset aria-invalid="true" aria-describedby="err_typeDon" role="radiogroup" required>
-                <legend>Type de don:</legend>
-                <label><input type="radio" name="typeDon" value="unique" aria-describedby="err_typeDon">Don unique</label>
-                <label><input type="radio" name="typeDon" value="mensuel" aria-describedby="err_typeDon">Don mensuel</label>
+                <legend class="cacher">Type de don:</legend>
+                <input type="radio" id="unique" class="hors-ecran" name="typeDon" value="unique" aria-describedby="err_typeDon">
+                <label for="unique">Don unique</label>
+                <input type="radio" id="mensuel" class="hors-ecran" name="typeDon" value="mensuel" aria-describedby="err_typeDon">
+                <label for="mensuel">Don mensuel</label>
             </fieldset>
             <span id="err_typeDon" class="erreur" role="alert" aria-live="polite"></span>
 
             <fieldset aria-invalid="true" aria-describedby="err_montant" role="radiogroup" required>
-                <legend>Montant</legend>
-                <label><input type="radio" name="montant" value="15.00" >15$</label>
-                <label><input type="radio" name="montant" value="25.00" >25$</label>
-                <label><input type="radio" name="montant" value="50.00" >50$</label>
-                <label><input type="radio" name="montant" value="75.00" >75$</label>
-                <label><input type="radio" name="montant" value="100.00" >100$</label>
-                <label>
-                    Montant personnalisé:
-                    <input type="text" name="montant" placeholder="0$">
-                </label>
+                <legend class="cacher">Montant</legend>
+                <input type="radio" id="valeur15" name="montant" value="15.00" >
+                <label for="valeur15">15$</label>
+                <input type="radio" id="valeur25" name="montant" value="25.00" >
+                <label for="valeur25">25$</label>
+                <input type="radio" id="valeur50" name="montant" value="50.00" >
+                <label for="valeur50">50$</label>
+                <input type="radio" id="valeur75" name="montant" value="75.00" >
+                <label for="valeur75">75$</label>
+                <input type="radio" id="valeur100" name="montant" value="100.00" >
+                <label for="valeur100">100$</label>
+                <input type="radio" id="autreMontant" name="montant" value="autre" >
+                <label for="autreMontant">Autre</label>
+                <div id="montantPerso">
+                    <label>
+                        Montant personnalisé:
+                        <input type="text" name="montant" placeholder="0$">
+                    </label>
+                </div>
+                
             </fieldset>
             <span id="err_montant" class="erreur" role="alert" aria-live="polite"></span>
         </fieldset>
 
         <fieldset name="etape" id="etape2">
-            <legend>Vos coordonnées</legend>
+            <legend class="titreNiveau2">2. Vos coordonnées</legend>
             <label>
                 Prénom*
                 <input type="text" id="prenom" name="prenom" placeholder="Prénom" aria-describedby="txt" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_prenom" required>
@@ -79,12 +91,12 @@
             <label for="infolettre"><small>Je veux être au courant des nouveautés chez Équiterre.</small></label>
             <label>
                 Téléphone*
-                <input type="tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-invalid="true" aria-describedby="err_tel" required>
+                <input type="tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel" pattern="^\(?([0-9]{3})\)?[ ]?([0-9]{3})[-]?([0-9]{4})$" aria-invalid="true" aria-describedby="err_tel" required>
                 <span id="err_tel" class="erreur" role="alert" aria-live="polite"></span>
             </label>
 
             <fieldset>
-                <legend>Adresse*</legend>
+                <legend class="cacher">Adresse</legend>
                 <label for="country">Pays*</label>
                 <select name="country" id="country" aria-invalid="true" aria-describedby="err_country" required>
                     <option value="">Choisir un pays</option>
@@ -115,7 +127,7 @@
         </fieldset>
        
         <fieldset name="etape" id="etape3" aria-invalid="true" aria-describedby="err_paiement" required>
-            <legend>Paiement</legend>
+            <legend class="titreNiveau2">3. Paiement</legend>
             
             <label>
                 Nom du titulaire*
@@ -144,12 +156,12 @@
         </fieldset>       
         
         <fieldset name="etape" id="etape4">
-            <p>Merci pour votre don!</p>
+            <legend class="titreNiveau3">Merci pour votre don!</legend>
         </fieldset>
-        <button type="button" id="btn-precedent">Precedent</button>
-        <button type="button" id="btn-suivant">Suivant</button>
-        <button type="button" id="btn-envoyer">Envoyer mon don</button>
       </form>
+        <button class="bouton" :hover type="button" id="btn-precedent">Précédent</button>
+        <button class="bouton" :hover type="button" id="btn-suivant">Suivant</button>
+        <button class="bouton" type="button" id="btn-envoyer">Envoyer mon don</button>
     </main>
 
     <footer>
