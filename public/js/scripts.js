@@ -12,6 +12,7 @@ const inputProvince = document.getElementById('province');
 const autreMontant = document.getElementById('autreMontant');
 const inputMontant = document.getElementById('montantPerso');
 const radioMontant = document.querySelectorAll('input[name="montant"]');
+const liensEtapes = document.querySelectorAll('a');
 // la date d'aujourd'hui a été trouvée à l'aide de chat GPT
 const today = new Date();
 const dateAuj = today.toLocaleDateString("fr-CA");
@@ -35,6 +36,17 @@ function initialiser() {
     }
     if (btnEnvoyer) {
         btnEnvoyer.addEventListener('click', changerEtape);
+    }
+    if (liensEtapes) {
+        liensEtapes.forEach(etapeElement => {
+            const etapeChoisie = parseInt(etapeElement.dataset.etape);
+            etapeElement.addEventListener('click', () => {
+                if (etapeChoisie <= noEtape + 1) {
+                    afficherEtape(etapeChoisie - 1);
+                    noEtape = etapeChoisie - 1;
+                }
+            });
+        });
     }
     if (champEmail) {
         champEmail.addEventListener('change', faireValiderEmail);
@@ -95,9 +107,8 @@ function validerChamp(champ) {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "err_" + id;
-    // console.log(idMessageErreur);
     const errElement = document.getElementById(idMessageErreur);
-    console.log('valider champ', champ.validity);
+    // console.log('valider champ', champ.validity);
     if (champ.validity.valueMissing && messagesJson[id].vide) {
         valide = false;
         errElement.innerText = messagesJson[id].vide;
@@ -117,6 +128,7 @@ function validerChamp(champ) {
     }
     return valide;
 }
+// Démo du prof faite en classe
 function validerEmail(champ) {
     const tldSuspicieux = [
         '.ru',
@@ -291,7 +303,13 @@ function afficherEtape(etape) {
             btnSuivant?.classList.add('cacher');
             btnEnvoyer?.classList.remove('cacher');
         }
+        else if (etape == 3) {
+            btnPrecedent?.classList.add('cacher');
+            btnSuivant?.classList.add('cacher');
+            btnEnvoyer?.classList.add('cacher');
+        }
     }
+    console.log("etape" + noEtape);
 }
 function revenirEtape(event) {
     if (noEtape > 0) {
@@ -316,9 +334,8 @@ function cacherFieldsets() {
     });
 }
 // TO-DO
+// DIMANCHE: Logo en SVG dans le html, commentaires, valider w3c
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
-// champ telephone que accepte n'importe quoi
-// navigation steps left

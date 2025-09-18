@@ -5,13 +5,13 @@ let champEmail;
 let noEtape: number = 0;
 let etapes: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll('[name="etape"]');
 let messagesJson: ErreurJSON;
-
 const provinceConteneur = document.getElementById('provinceConteneur') as HTMLSelectElement;
 const inputPays = document.getElementById('country') as HTMLSelectElement;
 const inputProvince = document.getElementById('province') as HTMLSelectElement;
 const autreMontant = document.getElementById('autreMontant') as HTMLInputElement | null;
 const inputMontant = document.getElementById('montantPerso') as HTMLSelectElement;
 const radioMontant = document.querySelectorAll<HTMLInputElement>('input[name="montant"]');
+const liensEtapes = document.querySelectorAll('a');
 
   // la date d'aujourd'hui a été trouvée à l'aide de chat GPT
   const today = new Date();
@@ -61,6 +61,20 @@ function initialiser(){
         if(btnEnvoyer){
             btnEnvoyer.addEventListener('click', changerEtape);
         }
+
+        if (liensEtapes) {
+            liensEtapes.forEach(etapeElement => {
+            const etapeChoisie = parseInt(etapeElement.dataset.etape!);
+
+            etapeElement.addEventListener('click', () => {
+            if (etapeChoisie <= noEtape + 1) {
+                afficherEtape(etapeChoisie - 1);
+                noEtape = etapeChoisie - 1;
+                }
+            });
+        });
+        }
+            
         if(champEmail){
             champEmail.addEventListener('change', faireValiderEmail);
         }
@@ -133,10 +147,9 @@ function validerChamp(champ:HTMLInputElement): boolean {
 
     const id = champ.id;
     const idMessageErreur = "err_" + id;
-    // console.log(idMessageErreur);
     const errElement:HTMLElement | null = document.getElementById(idMessageErreur);
 
-    console.log('valider champ', champ.validity);
+    // console.log('valider champ', champ.validity);
     
     if (champ.validity.valueMissing && messagesJson[id].vide) {
         valide = false;
@@ -157,6 +170,7 @@ function validerChamp(champ:HTMLInputElement): boolean {
     return valide;
 }
 
+// Démo du prof faite en classe
 function validerEmail(champ:HTMLInputElement):boolean{
     const tldSuspicieux = [
         '.ru',
@@ -329,7 +343,6 @@ function validerEtape(etape: number):boolean{
     return valide;
 }
 
-
 function afficherEtape(etape: number){
 
     cacherFieldsets ();
@@ -348,7 +361,14 @@ function afficherEtape(etape: number){
         btnSuivant?. classList.add('cacher'); 
         btnEnvoyer?.classList.remove ('cacher');
         }
+        else if (etape == 3) {
+        btnPrecedent?.classList.add('cacher');
+        btnSuivant?. classList.add('cacher'); 
+        btnEnvoyer?.classList.add ('cacher');
+        }
     }
+
+    console.log("etape" + noEtape);
 }
 
 function revenirEtape(event: MouseEvent){
@@ -379,9 +399,10 @@ function cacherFieldsets(){
 }
 
 // TO-DO
+// DIMANCHE: Logo en SVG dans le html, commentaires, valider w3c
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
-// champ telephone que accepte n'importe quoi
-// navigation steps left
+
+
