@@ -399,10 +399,11 @@ function cacherFieldsets(){
 }
 
 // TO-DO
-// DIMANCHE: Logo en SVG dans le html, commentaires, valider w3c
 // carte credit mousedown
 // titre change couleur selon étape sélectionnée
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
+// validation app/bureau
+// résumé avec bonnes données
 
 
