@@ -1,10 +1,18 @@
 @use "sass:color";
 @use "../utilitaires/variables";
+@use "../utilitaires/mixins";
 
 /**
 * @author Prenom Nom courriel
 * @todo Compléter selon l'énoncé de l'exercice
 */
+
+.navBouton{
+  max-width: 800px;
+  margin: 3em auto;
+  display: flex;
+  justify-content: space-between;
+}
 
 .bouton {
   background-color: variables.$vert;
@@ -16,11 +24,7 @@
   font-family: 'Kaisei Opti';
   font-size: 18px;
   text-transform: uppercase;
-
-  // :hover{
-  //   background-color: white;
-  //   border: 2px solid variables.$vert;
-  // }
+  align-content: center;
 }
 
 .bouton:hover{
@@ -29,7 +33,14 @@
   color: variables.$vert;
 }
 
-input[type=radio] + label{
+.btnSuivant{
+  margin-left: auto;
+}
+
+
+// BOUTON DON
+input[name=typeDon] + label,
+input[name=typeDonneur] + label{
   color: variables.$vert;
   font-family: 'Kaisei Opti';
   font-size: 18px;
@@ -38,9 +49,39 @@ input[type=radio] + label{
   margin: 1em 2em;
 }
 
-
-input[type=radio]:checked + label {
-    border-bottom: 2px solid variables.$vert;
-    padding-bottom: .5em;
+input[name=typeDon]:checked + label,
+input[name=typeDonneur]:checked + label {
+border-bottom: 2px solid variables.$vert;
+padding-bottom: .5em;
 }
+
+// BOUTON MONTANT
+input[name=montant]{
+  display: none;
+}
+
+input[name=montant] + label{
+  color: variables.$blanc;
+  background-color: variables.$vert;
+  font-family: 'Kaisei Opti';
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: .5em 1em;
+  border-radius: 10px;
+  margin: 1em;
+}
+
+input[name=montant]:checked + label {
+border: 2px solid variables.$vert;
+color: variables.$vert;
+background-color: variables.$blanc;
+}
+
+
+
+
+
+
 

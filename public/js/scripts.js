@@ -285,9 +285,12 @@ function validerEtape(etape) {
     return valide;
 }
 function afficherEtape(etape) {
+    const etatCourant = document.getElementById('etat' + etape);
+    console.log(etatCourant);
     cacherFieldsets();
     if (etape >= 0 && etape < etapes.length) {
         etapes[etape].classList.remove('cacher');
+        etatCourant?.classList.add('etatCourant');
         if (etape == 0) {
             btnPrecedent?.classList.add('cacher');
             btnSuivant?.classList.remove('cacher');
@@ -334,9 +337,17 @@ function cacherFieldsets() {
     });
 }
 // TO-DO
-// carte credit mousedown
+// carte credit mousedown/ key up
 // titre change couleur selon étape sélectionnée
 // au moins une validation au change ou input
 // validation différente selon si visa ou mastercard
 // validation app/bureau
 // résumé avec bonnes données
+// validation app/bureau
+/* Dans votre code JavaScript ou TypeScript, vous devrez :
+ * 1. Désactiver les étapes au chargement de la page dans votre fonction "initialiser" (aria-disabled et classe "inactive") sauf l'étape 1.
+ *    Note : en JavaScript, les attributs sont nommées en "camel case" - aria-disabled devient ariaDisabled. (ex.: monElement.ariaDisabled = true;)
+ * 2. Quand l'étape est validée et que vous passez à la suivante, les liens des étapes valides peuvent devenir actifs
+ * 3. Ne permettez la navigation que vers les étapes précédentes. Si on navigue à rebours, les liens des étapes suivantes doivent se désactiver.
+ */
+// <a class="etapes__item etapes__item--inactive" aria-disabled="true" href="#etape4">

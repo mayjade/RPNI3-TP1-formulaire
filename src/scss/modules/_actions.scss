@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../utilitaires/variables";
+
 .cacher{
     display: none;
 }
@@ -6,80 +9,16 @@
     color: red;
 }
 
-    /* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
-    .etapes__item {
-        color: black;
-        text-decoration: underline; /* L'ancre est soulignée par défaut */
-        cursor: pointer; /* C'est la valeur par défaut */
-    }
-    .etapes__item--inactive {
-        color: black;
-        pointer-events: none; /* Les événements de pointeurs et de curseurs ne seront pas honorés */
-        cursor: not-allowed; /* Autre option - cursor: default; */
-        text-decoration: none; /* On désactive l'effet surligné */
-    }
-    .etapes__item--active {
-        color: green;
-    }
+  
+.hors-ecran{
+    position: absolute; /* Position absolue pour l'enlver du "flow" commun du document */
+    width: 1px; /* 1px de large parce que zéro l'enlève de l'arbre d'accessibilité */
+    height: 1px; /* 1px de haut parce que zéro l'enlève de l'arbre d'accessibilité */
+    padding: 0; /* Aucun padding pour éviter que l'élément soit visible malgré sa largeur et son hauteur */
+    margin: -1px; /* Marge négative de 1px pour annuler le 1px de haut et de large */
+    overflow: hidden; /* Le contenu de l'élément doit ne pas dépasser du modèle de boîte (box model) pour qu'il reste invisible */
+    clip-path: inset(50%); /* Un masque clip-path qui force encore plus l'invisibilité de l'élément */
+    white-space: nowrap; /* Empêche les bris de ligne pour éviter que le texte de l'élément ne pousse d'autre contenu */
+    border-width: 0; /* On annule aussi les bordures */
+}
 
-    /* 
-     * HORS-ÉCRAN - cacher un élément tout en le gardant accessible 
-     *
-     * Vous pouvez copier cette classe dans votre code 
-     * C'est une classe CSS commune mais assez complexe qui permet
-     * de cacher visuellement un élément sans le désactiver au niveau
-     * de l'arbre HTML et donc préserve son accessibilité. 
-     * 
-     * On n'oublie pas! display:none; enlève l'élément de l'arbre
-     * d'accessibilité alors il ne faut PAS l'utiliser  pour cacher
-     * un élément qui devrait être accessible. Utilisez plutôt cette classe
-     */
-    .hors-ecran{
-        position: absolute; /* Position absolue pour l'enlver du "flow" commun du document */
-        width: 1px; /* 1px de large parce que zéro l'enlève de l'arbre d'accessibilité */
-        height: 1px; /* 1px de haut parce que zéro l'enlève de l'arbre d'accessibilité */
-        padding: 0; /* Aucun padding pour éviter que l'élément soit visible malgré sa largeur et son hauteur */
-        margin: -1px; /* Marge négative de 1px pour annuler le 1px de haut et de large */
-        overflow: hidden; /* Le contenu de l'élément doit ne pas dépasser du modèle de boîte (box model) pour qu'il reste invisible */
-        clip-path: inset(50%); /* Un masque clip-path qui force encore plus l'invisibilité de l'élément */
-        white-space: nowrap; /* Empêche les bris de ligne pour éviter que le texte de l'élément ne pousse d'autre contenu */
-        border-width: 0; /* On annule aussi les bordures */
-    }
-
-// Puisqu'on travaille en amélioration progressive, les ancres seront fonctionnelles grâce à leur attribut href même si on désactive le JavaScript -->
-// <nav class="etapes">
-//     <ol>
-//         <li>
-//             <!-- La valeur href de l'ancre doit être le ID de la section où le focus sera mis lorsqu'on clique dessus SANS JavaScript -->
-//             <a class="etapes__item etapes__item--active" aria-current="step" href="#etape1">
-//               <span class="hors-ecran">Étape 1 de 4</span>
-//               Don
-//             </a>
-//         </li>
-//         <li>
-//             <a class="etapes__item etapes__item--inactive" aria-disabled="true" href="#etape2">
-//               <span class="hors-ecran">Étape 2 de 4</span>
-//               Coordonnées
-//             </a>
-//         </li>
-//         <li>
-//             <a class="etapes__item etapes__item--inactive" aria-disabled="true" href="#etape3">
-//               <span class="hors-ecran">Étape 3 de 4</span>
-//               Paiement
-//             </a>
-//         </li>
-//         <li>
-//             <a class="etapes__item etapes__item--inactive" aria-disabled="true" href="#etape4">
-//               <span class="hors-ecran">Étape 4 de 4</span>
-//               Résumé
-//             </a>
-//         </li>
-//     </ol>
-// </nav>
-
-  /* Dans votre code JavaScript ou TypeScript, vous devrez : 
-   * 1. Désactiver les étapes au chargement de la page dans votre fonction "initialiser" (aria-disabled et classe "inactive") sauf l'étape 1. 
-   *    Note : en JavaScript, les attributs sont nommées en "camel case" - aria-disabled devient ariaDisabled. (ex.: monElement.ariaDisabled = true;)
-   * 2. Quand l'étape est validée et que vous passez à la suivante, les liens des étapes valides peuvent devenir actifs
-   * 3. Ne permettez la navigation que vers les étapes précédentes. Si on navigue à rebours, les liens des étapes suivantes doivent se désactiver.
-   */

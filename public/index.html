@@ -17,18 +17,18 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="none"><path fill="#000" d="M15.5 15.5c-2.063 0-3.828-.734-5.297-2.203C8.734 11.828 8 10.062 8 8c0-2.063.734-3.828 2.203-5.297C11.672 1.234 13.438.5 15.5.5c2.063 0 3.828.734 5.297 2.203C22.266 4.172 23 5.938 23 8c0 2.063-.734 3.828-2.203 5.297-1.469 1.469-3.235 2.203-5.297 2.203ZM.5 26.75v-1.5c0-1.063.274-2.039.821-2.929a5.493 5.493 0 0 1 2.179-2.04 27.794 27.794 0 0 1 5.906-2.178 25.891 25.891 0 0 1 12.188 0c2 .486 3.968 1.212 5.906 2.178a5.472 5.472 0 0 1 2.18 2.04c.548.891.821 1.868.82 2.929v1.5c0 1.031-.367 1.914-1.1 2.65-.734.734-1.617 1.101-2.65 1.1H4.25c-1.031 0-1.914-.367-2.647-1.1C.869 28.665.5 27.782.5 26.75Zm3.75 0h22.5v-1.5a1.813 1.813 0 0 0-.938-1.594 24.396 24.396 0 0 0-5.109-1.897 21.842 21.842 0 0 0-5.203-.634c-1.75-.001-3.484.21-5.203.634a24.68 24.68 0 0 0-5.11 1.897 1.832 1.832 0 0 0-.68.657 1.745 1.745 0 0 0-.257.937v1.5Zm11.25-15c1.031 0 1.914-.367 2.65-1.1.734-.734 1.101-1.617 1.1-2.65a3.615 3.615 0 0 0-1.1-2.647A3.624 3.624 0 0 0 15.5 4.25c-1.034-.003-1.916.365-2.648 1.103-.73.737-1.098 1.62-1.102 2.647-.004 1.027.364 1.91 1.102 2.65.74.738 1.622 1.105 2.648 1.1Z"/></svg>
 
         <nav aria-label="Principal">
-            <ol>
-                <li aria-current="page" id="etat1">
+            <ol class="navigation">
+                <li aria-current="page" id="etat0">
                     <a data-etape="1" href="#etape1" >
                     <span class="hors-ecran">Étape 1 </span>
                     Montant</a>
                 </li>
-                <li  id="etat2">
-                    <a data-etape="2" href="#etape2"><span class="hors-ecran">Étape 2 </span>
+                <li id="etat1">
+                    <a data-etape="2" href="#etape2" aria-disabled="true"><span class="hors-ecran">Étape 2 </span>
                     Coordonnées</a>
                 </li>
-                <li id="etat3">
-                    <a data-etape="3" href="#etape3"><span class="hors-ecran">Étape 3 </span>
+                <li id="etat2">
+                    <a data-etape="3" href="#etape3" aria-disabled="true"><span class="hors-ecran">Étape 3 </span>
                     Paiement</a>
                 </li>
             </ol>
@@ -37,7 +37,7 @@
     
     <main>
     <form class="formulaire" id="formulaire" action="/submit" method="post">
-        <fieldset name="etape" id="etape1">
+        <fieldset name="etape" id="etape1" class="etape1">
             <legend class="titreNiveau2">1. Montant</legend>
             <fieldset aria-invalid="true" aria-describedby="err_typeDon" role="radiogroup">
                 <legend class="cacher">Type de don:</legend>
@@ -65,7 +65,7 @@
                 <div id="montantPerso">
                     <label>
                         Montant personnalisé:
-                        <input type="text" name="montant" placeholder="0$">
+                        <input type="text" name="montantPerso" placeholder="0$">
                     </label>
                 </div>
                 
@@ -73,19 +73,28 @@
             <span id="err_montant" class="erreur" role="alert" aria-live="polite"></span>
         </fieldset>
 
-        <fieldset name="etape" id="etape2">
+        <fieldset name="etape" id="etape2" class="etape2">
             <legend class="titreNiveau2">2. Vos coordonnées</legend>
 
+            <fieldset aria-invalid="true" aria-describedby="err_typeDonneur" role="radiogroup">
+                <legend class="cacher">Type de donneur</legend>
+                <input type="radio" id="personnel" class="hors-ecran" name="typeDonneur" value="personnel" aria-describedby="err_typeDonneur">
+                <label for="personnel">Personnel</label>
+                <input type="radio" id="entreprise" class="hors-ecran" name="typeDonneur" value="entreprise" aria-describedby="err_typeDonneur">
+                <label for="entreprise">Entreprise</label>
+            </fieldset>
+            <span id="err_typeDonneur" class="erreur" role="alert" aria-live="polite"></span>
+
             <label for="prenom">Prénom*</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Prénom" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_prenom" required>
+            <input type="text" id="prenom" size="30" name="prenom" size="50" placeholder="Prénom" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_prenom" required>
             <span id="err_prenom" class="erreur" role="alert" aria-live="polite"></span>
             
             <label for="nom">Nom*</label>
-            <input type="text" id="nom" name="nom" placeholder="Nom" autocomplete="family-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nom" required>
+            <input type="text" id="nom" size="30" name="nom" placeholder="Nom" autocomplete="family-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nom" required>
             <span id="err_nom" class="erreur" role="alert" aria-live="polite"></span>
             
             <label for="email">Courriel*</label>
-            <input type="email" id="email" name="email" placeholder="Courriel" autocomplete="email" pattern="
+            <input type="email" id="email" size="75" name="email" placeholder="Courriel" autocomplete="email" pattern="
             ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-invalid="true" aria-describedby="err_email" required>
             <span id="err_email" class="erreur" role="alert" aria-live="polite"></span>
             
@@ -93,51 +102,47 @@
             <label for="infolettre">Je veux être au courant des nouveautés chez Équiterre.</label>
             
             <label for="tel">Téléphone*</label>
-            <input type="tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel" pattern="^\(?[0-9]{3}\)? ?[0-9]{3}-?[0-9]{4}$" aria-invalid="true" aria-describedby="err_tel" required>
+            <input type="tel" id="tel" size="30" name="telephone" placeholder="(418) 123-4567" autocomplete="tel" pattern="^\(?[0-9]{3}\)? ?[0-9]{3}-?[0-9]{4}$" aria-invalid="true" aria-describedby="err_tel" required>
             <span id="err_tel" class="erreur" role="alert" aria-live="polite"></span>
             
-
-            <fieldset>
-                <legend class="cacher">Adresse</legend>
-                <label for="country">Pays*</label>
-                <select name="country" id="country" aria-invalid="true" aria-describedby="err_country" required>
-                    <option value="">Choisir un pays</option>
-                </select>
-                <span id="err_country" class="erreur" role="alert" aria-live="polite"></span>
-            
-                <div id="provinceConteneur">
-                    <label for="province">Province*</label>
-                    <select id="province" name="province" aria-invalid="true" aria-describedby="err_province">
-                        <option value="">Choisir une province</option>
-                    </select>
-                    <span id="err_province" class="erreur" role="alert" aria-live="polite"></span>
-                </div>
-                <label for="adresse">Adresse*</label>
-                <input name="adresse" id="adresse" placeholder="Adresse" type="text" value="" maxlength="100" pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" aria-invalid="true" aria-describedby="err_adresse" required>
-                <span id="err_adresse" class="erreur" role="alert" aria-live="polite"></span>
-                <label for="appbureau" class="">App. / bureau</label>
-                <input id="appbureau" name="appbureau" type="text" placeholder="App. / bureau" value="" maxlength="25">
-                <label for="ville" class="">Ville*</label>
-                <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25" aria-invalid="true" required>
-                <span id="err_ville" class="erreur" role="alert" aria-live="polite"></span>
-                <label for="postalcode" class="">Code postal*</label>
-                <input id="postalcode" name="codepostal" type="text" autocomplete="postal-code" placeholder="A1A 1A1" value="" maxlength="7" pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$" aria-invalid="true" aria-describedby="err_postalcode" required>
-                <span id="err_postalcode" class="erreur" role="alert" aria-live="polite"></span>
-            </fieldset>
-
+            <label class="listeDeroule" for="country">Pays*</label>
+            <select name="country" id="country" aria-invalid="true" aria-describedby="err_country" required>
+                <option value="">Choisir un pays</option>
+            </select>
+            <span id="err_country" class="erreur" role="alert" aria-live="polite"></span>
         
+            <div id="provinceConteneur">
+                <label for="province">Province*</label>
+                <select id="province" name="province" aria-invalid="true" aria-describedby="err_province">
+                    <option value="">Choisir une province</option>
+                </select>
+                <span id="err_province" class="erreur" role="alert" aria-live="polite"></span>
+            </div>
+            <label for="adresse">Adresse*</label>
+            <input name="adresse" id="adresse" size="75" placeholder="Adresse" type="text" value="" maxlength="100" pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" aria-invalid="true" aria-describedby="err_adresse" required>
+            <span id="err_adresse" class="erreur"  role="alert" aria-live="polite"></span>
+            <label for="appbureau" class="">App. / bureau</label>
+            <input id="appbureau" name="appbureau" size="10" type="text" placeholder="app/bureau" value="" maxlength="25">
+            <span id="err_appbureau"></span>
+            <label for="ville" class="">Ville*</label>
+            <input id="ville" name="ville" size="30" type="text" placeholder="Québec" value="" maxlength="25" aria-invalid="true" required>
+            <span id="err_ville" class="erreur" role="alert" aria-live="polite"></span>
+            <label for="postalcode" class="">Code postal*</label>
+            <input id="postalcode" name="codepostal" size="10" type="text" autocomplete="postal-code" placeholder="A1A 1A1" value="" maxlength="7" pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$" aria-invalid="true" aria-describedby="err_postalcode" required>
+            <span id="err_postalcode" class="erreur" role="alert" aria-live="polite"></span>
+
         </fieldset>
        
-        <fieldset name="etape" id="etape3" aria-invalid="true">
+        <fieldset name="etape" id="etape3" aria-invalid="true" class="etape3">
             <legend class="titreNiveau2">3. Paiement</legend>
             
             <label for="titulaire">Nom du titulaire*</label>
-            <input type="text" id="titulaire" name="titulaire" placeholder="Prénom Nom" autocomplete="given-name" pattern="^(?=.{2,50}$)\p{L}+(?:[ '\-]\p{L}+)*$" aria-invalid="true" aria-describedby="err_titulaire" required>
+            <input type="text" id="titulaire" size="50" name="titulaire" placeholder="Prénom Nom" autocomplete="given-name" pattern="^(?=.{2,50}$)\p{L}+(?:[ '\-]\p{L}+)*$" aria-invalid="true" aria-describedby="err_titulaire" required>
             <!-- l'attribut pattern du titulaire a été généré par chat GPT -->
             <span id="err_titulaire" class="erreur" role="alert" aria-live="polite"></span>
             
             <label for="cc"> Numéro de carte de crédit*</label>
-            <input id="cc" type="text" name="nocartecredit" inputmode="numeric" autocomplete="cc-number" placeholder="1111 1111 1111 1111" maxlength="16" pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$" aria-invalid="true" aria-describedby="err_cc" required>
+            <input id="cc" type="text" size="50" name="nocartecredit" inputmode="numeric" autocomplete="cc-number" placeholder="1111 1111 1111 1111" maxlength="16" pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$" aria-invalid="true" aria-describedby="err_cc" required>
             <span id="err_cc" class="erreur" role="alert" aria-live="polite"></span>
             
             <label for="expiration">Date d'expiration*</label>
@@ -145,7 +150,7 @@
             <span id="err_expiration" class="erreur" role="alert" aria-live="polite"></span>
             
             <label for="securitycode">Code de sécurité*</label>
-            <input id="securitycode" type="text" name="codesecurite" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" pattern="^[0-9]{3-4}$" aria-invalid="true" aria-describedby="err_securitycode" required>
+            <input id="securitycode" size="10" type="text" name="codesecurite" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" pattern="^[0-9]{3-4}$" aria-invalid="true" aria-describedby="err_securitycode" required>
             <span id="err_securitycode" class="erreur" role="alert" aria-live="polite"></span>
 
             <!-- données à modifier selon ce qui sera choisi -->
@@ -158,9 +163,12 @@
             <legend class="titreNiveau3">Merci pour votre don!</legend>
         </fieldset>
       </form>
-        <button class="bouton" type="button" id="btn-precedent">Précédent</button>
-        <button class="bouton" type="button" id="btn-suivant">Suivant</button>
-        <button class="bouton" type="submit" id="btn-envoyer">Envoyer mon don</button>
+
+      <div class="navBouton">
+            <button class="bouton" type="button" id="btn-precedent">Précédent</button>
+            <button class="bouton btnSuivant" type="button" id="btn-suivant">Suivant</button>
+      </div>
+        <button class="envoyer" type="submit" id="btn-envoyer">Envoyer mon don</button> 
     </main>
 
     <footer>

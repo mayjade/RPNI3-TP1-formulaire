@@ -1,0 +1,46 @@
+@use "sass:color";
+@use "../utilitaires/variables";
+
+ol::marker{
+    color: red;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 1em auto;
+}
+
+a{
+    font-family: 'Kaisei Opti';
+    font-size: 32px;
+    color: variables.$brun;
+    text-decoration: none;
+}
+.etatCourant {
+    color: variables.$brun;
+    // background-color: variables.$vert;
+    // border-radius: 10 px;
+}
+
+.etatCourant a{
+    color: variables.$vert;
+    text-decoration: underline;
+}
+
+/* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
+// .etapes__item {
+//     color: black;
+//     text-decoration: underline; /* L'ancre est soulignée par défaut */
+//     cursor: pointer; /* C'est la valeur par défaut */
+// }
+// .etapes__item--inactive {
+//     color: black;
+//     pointer-events: none; /* Les événements de pointeurs et de curseurs ne seront pas honorés */
+//     cursor: not-allowed; /* Autre option - cursor: default; */
+//     text-decoration: none; /* On désactive l'effet surligné */
+// }
+// .etapes__item--active {
+//     color: green;
+// }
