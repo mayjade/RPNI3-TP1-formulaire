@@ -55,6 +55,17 @@ legend{
     margin-bottom: .2em;
 }
 
+.infolettre{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2em;
+}
+
+#caseCocher label{
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+}
+
 fieldset.etape2 label,
 fieldset.etape2 input,
 fieldset.etape2 span.erreur,
@@ -63,4 +74,9 @@ fieldset.etape3 input,
 fieldset.etape3 span.erreur {
   display: block;
   margin-left: 2em;
+}
+
+.resume{
+    margin-left: 2em;
+    margin-bottom: 3em;
 }

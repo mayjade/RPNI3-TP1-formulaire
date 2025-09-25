@@ -35,6 +35,9 @@
     "typeDon": {
         "vide": "Veuillez sélectionner un type de don."
     },
+    "typeDonneur": {
+        "vide": "Veuillez sélectionner un type de donneur."
+    },
     "montant": {
         "vide": "Veuillez sélectionner un montant."
     },

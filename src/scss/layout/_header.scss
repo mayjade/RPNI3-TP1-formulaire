@@ -1,15 +1,55 @@
 @use "sass:color";
 @use "../utilitaires/variables";
 
-ol::marker{
-    color: red;
+// ol::marker{
+//     color: red;
+// }
+
+h1{
+    text-align: center;
+}
+
+.entete {
+  background-color: variables.$lime;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  img{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3em;
+  }
+}
+
+.icones {
+  background-color: variables.$brun;
+  padding: 1em;
+  display: flex; 
+  gap: 1em; 
+
+  @media (min-width: variables.$desktop) {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em; 
+    position: absolute;
+    top: 0;
+    right: 20%;
+  }
 }
 
 .navigation{
     display: flex;
-    justify-content: space-around;
-    max-width: 600px;
-    margin: 1em auto;
+    flex-direction: column;
+    list-style-type: none;
+
+    @media (min-width: variables.$desktop) {
+        flex-direction: row;
+        justify-content: space-around;
+        max-width: 600px;
+        margin: 1em auto;
+  }
 }
 
 a{

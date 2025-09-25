@@ -11,6 +11,9 @@ const inputPays = document.getElementById('country');
 const inputProvince = document.getElementById('province');
 const autreMontant = document.getElementById('autreMontant');
 const inputMontant = document.getElementById('montantPerso');
+const nomEntreprise = document.getElementById('entreprise');
+const inputEntreprise = document.getElementById('nomEntrep');
+const radioTypeDonneur = document.querySelectorAll('input[name="typeDonneur"]');
 const radioMontant = document.querySelectorAll('input[name="montant"]');
 const liensEtapes = document.querySelectorAll('a');
 // la date d'aujourd'hui a été trouvée à l'aide de chat GPT
@@ -54,8 +57,12 @@ function initialiser() {
     radioMontant.forEach(montant => {
         montant.addEventListener('change', ajouterChampMontant);
     });
+    radioTypeDonneur.forEach(donneur => {
+        donneur.addEventListener('change', ajouterChampEntreprise);
+    });
     provinceConteneur.classList.add('cacher');
     inputMontant.classList.add('cacher');
+    inputEntreprise.classList.add('cacher');
     afficherEtape(0);
     obtenirMessages();
     obtenirPays();
@@ -66,6 +73,14 @@ function ajouterChampMontant() {
     }
     else {
         inputMontant?.classList.add('cacher');
+    }
+}
+function ajouterChampEntreprise() {
+    if (nomEntreprise?.checked) {
+        inputEntreprise?.classList.remove('cacher');
+    }
+    else {
+        inputEntreprise?.classList.add('cacher');
     }
 }
 async function obtenirMessages() {
@@ -249,8 +264,17 @@ function validerEtape(etape) {
             else {
                 errPays.innerText = messagesJson["pays"].vide ?? "";
             }
-            if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
-                valide = true;
+            const typeDonneurElement = document.querySelector('[name=typeDonneur]:checked');
+            const errElementDonneur = document.getElementById("err_typeDonneur");
+            if (typeDonneurElement != null) {
+                errElementDonneur.innerText = '';
+                if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
+                    valide = true;
+                }
+            }
+            else {
+                valide = false;
+                errElementDonneur.innerText = messagesJson["typeDonneur"].vide ?? "";
             }
             break;
         case 2:
@@ -322,6 +346,7 @@ function revenirEtape(event) {
     }
 }
 function changerEtape(event) {
+    event.preventDefault();
     const etapeValide = validerEtape(noEtape);
     if (etapeValide == true) {
         if (noEtape < 3) {
@@ -336,14 +361,6 @@ function cacherFieldsets() {
         section.classList.add('cacher');
     });
 }
-// TO-DO
-// carte credit mousedown/ key up
-// titre change couleur selon étape sélectionnée
-// au moins une validation au change ou input
-// validation différente selon si visa ou mastercard
-// validation app/bureau
-// résumé avec bonnes données
-// validation app/bureau
 /* Dans votre code JavaScript ou TypeScript, vous devrez :
  * 1. Désactiver les étapes au chargement de la page dans votre fonction "initialiser" (aria-disabled et classe "inactive") sauf l'étape 1.
  *    Note : en JavaScript, les attributs sont nommées en "camel case" - aria-disabled devient ariaDisabled. (ex.: monElement.ariaDisabled = true;)

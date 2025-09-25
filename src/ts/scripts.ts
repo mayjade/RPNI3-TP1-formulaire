@@ -10,6 +10,9 @@ const inputPays = document.getElementById('country') as HTMLSelectElement;
 const inputProvince = document.getElementById('province') as HTMLSelectElement;
 const autreMontant = document.getElementById('autreMontant') as HTMLInputElement | null;
 const inputMontant = document.getElementById('montantPerso') as HTMLSelectElement;
+const nomEntreprise = document.getElementById('entreprise') as HTMLInputElement | null;
+const inputEntreprise = document.getElementById('nomEntrep') as HTMLSelectElement;
+const radioTypeDonneur = document.querySelectorAll<HTMLInputElement>('input[name="typeDonneur"]');
 const radioMontant = document.querySelectorAll<HTMLInputElement>('input[name="montant"]');
 const liensEtapes = document.querySelectorAll('a');
 
@@ -81,9 +84,13 @@ function initialiser(){
         radioMontant.forEach(montant => {
             montant.addEventListener('change', ajouterChampMontant);
         });
+        radioTypeDonneur.forEach(donneur => {
+            donneur.addEventListener('change', ajouterChampEntreprise);
+        });
 
         provinceConteneur.classList.add('cacher');
         inputMontant.classList.add('cacher');
+        inputEntreprise.classList.add('cacher');
        
         afficherEtape(0);
         obtenirMessages();
@@ -97,6 +104,15 @@ function ajouterChampMontant(){
     } 
     else {
         inputMontant?.classList.add('cacher');
+    }
+}
+
+function ajouterChampEntreprise(){
+    if (nomEntreprise?.checked) {
+        inputEntreprise?.classList.remove('cacher');
+    } 
+    else {
+        inputEntreprise?.classList.add('cacher');
     }
 }
 
@@ -305,9 +321,20 @@ function validerEtape(etape: number):boolean{
             else{
                 errPays!.innerText = messagesJson["pays"].vide ?? "";
             }
-            if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
+
+            const typeDonneurElement = document.querySelector('[name=typeDonneur]:checked') as HTMLInputElement;
+            const errElementDonneur = document.getElementById("err_typeDonneur");
+            if(typeDonneurElement != null){
+                errElementDonneur!.innerText = '';
+                if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
                 valide = true;
+                }
             }
+            else{
+                valide = false;
+                errElementDonneur!.innerText = messagesJson["typeDonneur"].vide ?? "";
+            }
+
         break;
         case 2:
             const titulaireElement = document.getElementById('titulaire')  as HTMLInputElement;
@@ -383,6 +410,7 @@ function revenirEtape(event: MouseEvent){
 }
 
 function changerEtape(event: MouseEvent){
+    event.preventDefault();
     const etapeValide = validerEtape(noEtape);
     if(etapeValide == true){
         if (noEtape < 3) {
@@ -400,15 +428,6 @@ function cacherFieldsets(){
         section.classList.add('cacher');
     }) ; 
 }
-
-// TO-DO
-// carte credit mousedown/ key up
-// titre change couleur selon étape sélectionnée
-// au moins une validation au change ou input
-// validation différente selon si visa ou mastercard
-// validation app/bureau
-// résumé avec bonnes données
-// validation app/bureau
 
   /* Dans votre code JavaScript ou TypeScript, vous devrez : 
    * 1. Désactiver les étapes au chargement de la page dans votre fonction "initialiser" (aria-disabled et classe "inactive") sauf l'étape 1. 

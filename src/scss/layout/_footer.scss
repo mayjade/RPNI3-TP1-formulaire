@@ -1,0 +1,22 @@
+@use "sass:color";
+@use "../utilitaires/variables";
+
+footer{
+    background-color: variables.$lime;
+    padding: 3em 1em 1em 1em;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;     
+    text-align: center; 
+
+    img{
+        width: 150px;
+        height: auto;
+        text-align: center;
+    }
+
+    p{
+        color: variables.$brun;
+        margin-top: 2em;
+    }
+}

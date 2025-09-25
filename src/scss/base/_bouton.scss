@@ -37,10 +37,14 @@
   margin-left: auto;
 }
 
+.btnEnvoyer{
+  margin-left: 12em;
+}
 
-// BOUTON DON
+
+// BOUTON DON ET TYPE DONNEUR
 input[name=typeDon] + label,
-input[name=typeDonneur] + label{
+input[name=typeDonneur] + .typeDonneur{
   color: variables.$vert;
   font-family: 'Kaisei Opti';
   font-size: 18px;
@@ -50,7 +54,7 @@ input[name=typeDonneur] + label{
 }
 
 input[name=typeDon]:checked + label,
-input[name=typeDonneur]:checked + label {
+input[name=typeDonneur]:checked + .typeDonneur {
 border-bottom: 2px solid variables.$vert;
 padding-bottom: .5em;
 }
