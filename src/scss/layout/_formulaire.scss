@@ -7,7 +7,11 @@
     border-radius: 8px;
     max-width: 1000px;
     margin: 0 auto;
+    padding: .5em;
+
+@media(min-width: variables.$desktop){
     padding: 2em;
+  }
 }
 
 fieldset{
@@ -33,12 +37,17 @@ legend{
     border-radius: 10px;
     padding: .8em;
     margin-bottom: 2em;
+    max-width: 175px;
+
+@media(min-width: variables.$desktop){
     margin-left: 2em;
-    width: 230px;
+    max-width: 230px;
+  }
 }
 
 .etape2 input,
-.etape3 input{
+.etape3 input,
+.montantPerso input{
     border: solid 1px variables.$vert;
     border-radius: 10px;
     padding: .8em;
@@ -50,8 +59,11 @@ legend{
 }
 
 .etape2 label,
-.etape3 label{
+.etape3 label,
+.montantPerso label{
     color: variables.$brun;
+    font-family: variables.$texte;
+    font-size: 18px;
     margin-bottom: .2em;
 }
 
@@ -64,6 +76,8 @@ legend{
 #caseCocher label{
     margin-left: 0.5em;
     margin-top: 0.2em;
+    font-family: variables.$texte;
+    font-size: 16px;
 }
 
 fieldset.etape2 label,
@@ -73,10 +87,47 @@ fieldset.etape3 label,
 fieldset.etape3 input,
 fieldset.etape3 span.erreur {
   display: block;
-  margin-left: 2em;
+
+  @media(min-width: variables.$desktop){
+    margin-left: 2em;
+  }
+  
 }
 
 .resume{
     margin-left: 2em;
     margin-bottom: 3em;
+}
+
+#email,
+#adresse{
+    width: 100%;
+    max-width: 275px;
+
+    @media(min-width: variables.$desktop){
+        max-width: 500px;
+    }
+}
+
+#nom,
+#prenom,
+#nomEntreprise,
+#tel,
+#ville,
+#titulaire,
+#cc{
+    width: 100%;
+    max-width: 150px;
+
+    @media(min-width: variables.$desktop){
+        max-width: 200px;
+    }
+}
+
+#securitycode,
+#postalcode,
+#appbureau,
+#montantPersonnalise{
+    width: 100%;
+    max-width: 75px;
 }

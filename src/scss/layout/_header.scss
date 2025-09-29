@@ -16,11 +16,18 @@ h1{
   align-items: center;
   position: relative;
 
+  
   img{
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 3em;
+    max-width: 150px;
+    padding: 1em;
+
+    @media(min-width: variables.$desktop){
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3em;
+    }
   }
+  
 }
 
 .icones {
@@ -53,8 +60,8 @@ h1{
 }
 
 a{
-    font-family: 'Kaisei Opti';
-    font-size: 32px;
+    font-family: variables.$titre;
+    font-size: 24px;
     color: variables.$brun;
     text-decoration: none;
 }

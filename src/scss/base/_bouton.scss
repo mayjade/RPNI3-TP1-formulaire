@@ -21,7 +21,7 @@
   color: variables.$blanc;
   padding: .8em 1em;
   text-decoration: none;
-  font-family: 'Kaisei Opti';
+  font-family: variables.$titre;
   font-size: 18px;
   text-transform: uppercase;
   align-content: center;
@@ -46,11 +46,16 @@
 input[name=typeDon] + label,
 input[name=typeDonneur] + .typeDonneur{
   color: variables.$vert;
-  font-family: 'Kaisei Opti';
-  font-size: 18px;
+  font-family: variables.$titre;
+  font-size: 16px;
   text-transform: uppercase;
-  display: inline-block;
-  margin: 1em 2em;
+  margin: .5em;
+
+  @media(min-width: variables.$desktop){
+    margin: 1em 2em;
+    font-size: 18px;
+    display: inline-block;
+  }
 }
 
 input[name=typeDon]:checked + label,
@@ -67,7 +72,7 @@ input[name=montant]{
 input[name=montant] + label{
   color: variables.$blanc;
   background-color: variables.$vert;
-  font-family: 'Kaisei Opti';
+  font-family: variables.$titre;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
