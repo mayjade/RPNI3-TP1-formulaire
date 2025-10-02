@@ -146,8 +146,8 @@
             <input name="adresse" id="adresse" placeholder="Adresse" type="text" value="" maxlength="100" pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" aria-invalid="true" aria-describedby="err_adresse" autocomplete="address-line1" required>
             <span id="err_adresse" class="erreur"  role="alert" aria-live="polite"></span>
             <label for="appbureau" class="">App. / bureau</label>
-            <input id="appbureau" name="appbureau" type="text" placeholder="app/bureau" value="" maxlength="25">
-            <span id="err_appbureau"></span>
+            <input id="appbureau" name="appbureau" type="text" pattern="^[0-9]{1,7}$" placeholder="app/bureau" value="" maxlength="25">
+            <span id="err_appbureau" class="erreur"  role="alert" aria-live="polite"></span>
             <label for="ville" class="">Ville*</label>
             <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25" aria-invalid="true" required>
             <span id="err_ville" class="erreur" role="alert" aria-live="polite"></span>

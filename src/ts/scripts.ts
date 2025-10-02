@@ -282,7 +282,9 @@ function validerEtape(etape: number):boolean{
         break;
         case 1:
             const typeDonneurElement = document.querySelector('[name=typeDonneur]') as HTMLInputElement;
-            console.log(typeDonneurElement);
+            const appbureauElement = document.getElementById('appbureau') as HTMLInputElement;
+            const appbureauValide = validerChamp(appbureauElement);
+
             const nomElement = document.getElementById('nom') as HTMLInputElement;
             const prenomElement = document.getElementById('prenom')  as HTMLInputElement;
             const emailElement = document.getElementById('email')  as HTMLInputElement;
@@ -331,12 +333,21 @@ function validerEtape(etape: number):boolean{
                 errElementDonneur!.innerText = '';
 
                 if(typeDonneurCoche.value == 'entreprise'){
-                    console.log('entreprise');
                     const nomEntrepriseElement = document.getElementById('nomEntreprise') as HTMLInputElement;
                     const nomEntrepriseValide  = validerChamp(nomEntrepriseElement);
                     if(nomEntrepriseValide){
                          if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
-                        valide = true;
+                            if(appbureauElement.value != ''){
+                                if(appbureauValide){
+                                    valide = true;
+                                }
+                                else{
+                                    valide = false;
+                                }
+                            }
+                            else{
+                                valide = true;
+                            }
                         }
                     }
                 else{
@@ -345,7 +356,17 @@ function validerEtape(etape: number):boolean{
                 }
                 else{
                     if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
-                        valide = true;
+                            if(appbureauElement.value != ''){
+                                if(appbureauValide){
+                                    valide = true;
+                                }
+                                else{
+                                    valide = false;
+                                }
+                            }
+                            else{
+                                valide = true;
+                            }
                         }
                 }
                 

@@ -228,7 +228,8 @@ function validerEtape(etape) {
             break;
         case 1:
             const typeDonneurElement = document.querySelector('[name=typeDonneur]');
-            console.log(typeDonneurElement);
+            const appbureauElement = document.getElementById('appbureau');
+            const appbureauValide = validerChamp(appbureauElement);
             const nomElement = document.getElementById('nom');
             const prenomElement = document.getElementById('prenom');
             const emailElement = document.getElementById('email');
@@ -271,12 +272,21 @@ function validerEtape(etape) {
             if (typeDonneurCoche != null) {
                 errElementDonneur.innerText = '';
                 if (typeDonneurCoche.value == 'entreprise') {
-                    console.log('entreprise');
                     const nomEntrepriseElement = document.getElementById('nomEntreprise');
                     const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
                     if (nomEntrepriseValide) {
                         if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
-                            valide = true;
+                            if (appbureauElement.value != '') {
+                                if (appbureauValide) {
+                                    valide = true;
+                                }
+                                else {
+                                    valide = false;
+                                }
+                            }
+                            else {
+                                valide = true;
+                            }
                         }
                     }
                     else {
@@ -285,7 +295,17 @@ function validerEtape(etape) {
                 }
                 else {
                     if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
-                        valide = true;
+                        if (appbureauElement.value != '') {
+                            if (appbureauValide) {
+                                valide = true;
+                            }
+                            else {
+                                valide = false;
+                            }
+                        }
+                        else {
+                            valide = true;
+                        }
                     }
                 }
             }

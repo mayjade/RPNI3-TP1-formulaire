@@ -28,6 +28,9 @@
     "adresse": {
         "vide": "Veuillez inscrire votre adresse."
     },
+    "appbureau": {
+        "pattern": "Veuillez entrer un numéro d'appartement ou de bureau valide."
+    },
     "ville": {
         "vide": "Veuillez inscrire votre ville."
     },
