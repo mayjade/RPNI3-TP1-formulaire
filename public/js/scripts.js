@@ -227,6 +227,8 @@ function validerEtape(etape) {
             }
             break;
         case 1:
+            const typeDonneurElement = document.querySelector('[name=typeDonneur]');
+            console.log(typeDonneurElement);
             const nomElement = document.getElementById('nom');
             const prenomElement = document.getElementById('prenom');
             const emailElement = document.getElementById('email');
@@ -264,12 +266,27 @@ function validerEtape(etape) {
             else {
                 errPays.innerText = messagesJson["pays"].vide ?? "";
             }
-            const typeDonneurElement = document.querySelector('[name=typeDonneur]:checked');
+            const typeDonneurCoche = document.querySelector('[name=typeDonneur]:checked');
             const errElementDonneur = document.getElementById("err_typeDonneur");
-            if (typeDonneurElement != null) {
+            if (typeDonneurCoche != null) {
                 errElementDonneur.innerText = '';
-                if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
-                    valide = true;
+                if (typeDonneurCoche.value == 'entreprise') {
+                    console.log('entreprise');
+                    const nomEntrepriseElement = document.getElementById('nomEntreprise');
+                    const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+                    if (nomEntrepriseValide) {
+                        if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
+                            valide = true;
+                        }
+                    }
+                    else {
+                        valide = false;
+                    }
+                }
+                else {
+                    if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
+                        valide = true;
+                    }
                 }
             }
             else {

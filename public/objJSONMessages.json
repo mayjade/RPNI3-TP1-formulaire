@@ -9,6 +9,10 @@
         "pattern": "Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis.",
         "type": "Erreur type"
     },
+     "nomEntreprise": {
+        "vide": "Veuillez inscrire le nom de l'entreprise.",
+        "pattern": "Pour le nom de l'entreprise, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
     "email": {
         "vide": "Veuillez inscrire votre adresse courriel.",
         "pattern": "Assurez-vous d'entrer une adresse courriel valide.",

@@ -281,6 +281,8 @@ function validerEtape(etape: number):boolean{
             
         break;
         case 1:
+            const typeDonneurElement = document.querySelector('[name=typeDonneur]') as HTMLInputElement;
+            console.log(typeDonneurElement);
             const nomElement = document.getElementById('nom') as HTMLInputElement;
             const prenomElement = document.getElementById('prenom')  as HTMLInputElement;
             const emailElement = document.getElementById('email')  as HTMLInputElement;
@@ -322,13 +324,31 @@ function validerEtape(etape: number):boolean{
                 errPays!.innerText = messagesJson["pays"].vide ?? "";
             }
 
-            const typeDonneurElement = document.querySelector('[name=typeDonneur]:checked') as HTMLInputElement;
+            const typeDonneurCoche = document.querySelector('[name=typeDonneur]:checked') as HTMLInputElement;
             const errElementDonneur = document.getElementById("err_typeDonneur");
-            if(typeDonneurElement != null){
+            if(typeDonneurCoche != null){
+
                 errElementDonneur!.innerText = '';
-                if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
-                valide = true;
+
+                if(typeDonneurCoche.value == 'entreprise'){
+                    console.log('entreprise');
+                    const nomEntrepriseElement = document.getElementById('nomEntreprise') as HTMLInputElement;
+                    const nomEntrepriseValide  = validerChamp(nomEntrepriseElement);
+                    if(nomEntrepriseValide){
+                         if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
+                        valide = true;
+                        }
+                    }
+                else{
+                    valide = false;
                 }
+                }
+                else{
+                    if(nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide){
+                        valide = true;
+                        }
+                }
+                
             }
             else{
                 valide = false;
