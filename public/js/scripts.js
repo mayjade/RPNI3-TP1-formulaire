@@ -141,6 +141,8 @@ function validerChamp(champ) {
         valide = true;
         errElement.innerText = '';
     }
+    // aria-invalid sera modifié grâce à cette ligne de code fournie par chat GPT
+    champ.setAttribute("aria-invalid", valide ? "false" : "true");
     return valide;
 }
 // Démo du prof faite en classe
@@ -194,6 +196,8 @@ function validerEmail(champ) {
             errElement.innerText = '';
         }
     }
+    // aria-invalid sera modifié grâce à cette ligne de code fournie par chat GPT
+    champ.setAttribute("aria-invalid", valide ? "false" : "true");
     return valide;
 }
 function faireValiderEmail(event) {
@@ -359,6 +363,13 @@ function validerEtape(etape) {
 function afficherEtape(etape) {
     const etatCourant = document.getElementById('etat' + etape);
     console.log(etatCourant);
+    const mySteps = document.querySelectorAll(".navigation li");
+    mySteps.forEach(step => {
+        step.removeAttribute("aria-current");
+    });
+    if (etatCourant) {
+        etatCourant.setAttribute("aria-current", "page");
+    }
     cacherFieldsets();
     if (etape >= 0 && etape < etapes.length) {
         etapes[etape].classList.remove('cacher');

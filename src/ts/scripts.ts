@@ -183,6 +183,9 @@ function validerChamp(champ:HTMLInputElement): boolean {
         errElement!.innerText = '';
     }
 
+    // aria-invalid sera modifié grâce à cette ligne de code fournie par chat GPT
+    champ.setAttribute("aria-invalid", valide ? "false" : "true");
+
     return valide;
 }
 
@@ -241,6 +244,9 @@ function validerEmail(champ:HTMLInputElement):boolean{
             errElement!.innerText = '';
         }
     }
+
+    // aria-invalid sera modifié grâce à cette ligne de code fournie par chat GPT
+    champ.setAttribute("aria-invalid", valide ? "false" : "true");
 
     return valide;
 }
@@ -428,6 +434,15 @@ function afficherEtape(etape: number){
 
     const etatCourant = document.getElementById('etat' + etape);
     console.log(etatCourant);
+
+    const mySteps = document.querySelectorAll(".navigation li");
+    mySteps.forEach(step => {
+    step.removeAttribute("aria-current");
+    });
+    if (etatCourant) {
+        etatCourant.setAttribute("aria-current", "page");
+    }
+
     cacherFieldsets ();
     if (etape >= 0 && etape < etapes. length) {
         etapes[etape].classList.remove('cacher');

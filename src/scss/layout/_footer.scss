@@ -3,20 +3,32 @@
 
 footer{
     background-color: variables.$lime;
-    padding: 3em 1em 1em 1em;
+    padding: 1em 1em 0 1em;
     display: flex;
     flex-direction: column;   
     align-items: center;     
     text-align: center; 
 
+    @media(min-width: variables.$desktop){
+            padding: 3em 1em 1em 1em;
+        }
+
     img{
-        width: 150px;
+        width: 50px;
         height: auto;
         text-align: center;
+
+        @media(min-width: variables.$desktop){
+            width: 150px;
+        }
     }
 
     p{
         color: variables.$brun;
-        margin-top: 2em;
+        font-size: 16px;
+
+         @media(min-width: variables.$desktop){
+            margin-top: 2em;
+        }
     }
 }

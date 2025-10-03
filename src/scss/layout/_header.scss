@@ -76,18 +76,16 @@ a{
     text-decoration: underline;
 }
 
-/* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
-// .etapes__item {
-//     color: black;
-//     text-decoration: underline; /* L'ancre est soulignée par défaut */
-//     cursor: pointer; /* C'est la valeur par défaut */
-// }
-// .etapes__item--inactive {
-//     color: black;
-//     pointer-events: none; /* Les événements de pointeurs et de curseurs ne seront pas honorés */
-//     cursor: not-allowed; /* Autre option - cursor: default; */
-//     text-decoration: none; /* On désactive l'effet surligné */
-// }
-// .etapes__item--active {
-//     color: green;
-// }
+.navigation li .step {
+  padding: .5em .8em;
+  font-size: 20px;
+  color: variables.$brun;
+  background-color: variables.$lime;
+  border-radius: 50px;
+}
+
+/* Étape courante (li avec aria-current) */
+.navigation li[aria-current="page"] .step {
+  background-color: variables.$vert;
+  color: variables.$lime;
+}
