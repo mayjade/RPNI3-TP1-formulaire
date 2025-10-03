@@ -80,7 +80,8 @@
                 <label for="autreMontant">Autre</label>
                 <div id="montantPerso" class="montantPerso">
                     <label for="montantPersonnalise">Montant personnalisé*</label>
-                    <input type="text" id="montantPersonnalise" name="montantPerso" placeholder="0$">
+                    <input type="text" id="montantPersonnalise" aria-invalid="true" pattern="^[0-9]{1,7}$" name="montantPerso" aria-describedby="err_montantPersonnalise" placeholder="0$" required>
+                    <span id="err_montantPersonnalise" class="erreur" role="alert" aria-live="polite"></span>
                 </div>
             </fieldset>
             <span id="err_montant" class="erreur" role="alert" aria-live="polite"></span>
@@ -101,7 +102,7 @@
 
             <div id="nomEntrep">
                 <label for="nomEntreprise">Nom de l'entreprise*</label>
-                <input type="text" id="nomEntreprise" name="nomEntreprise" placeholder="Nom de l'entreprise" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nomEntreprise" required>
+                <input type="text" id="nomEntreprise" name="nomEntreprise" placeholder="Nom de l'entreprise" pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nomEntreprise" required>
                 <span id="err_nomEntreprise" class="erreur" role="alert" aria-live="polite"></span>
             </div>
 

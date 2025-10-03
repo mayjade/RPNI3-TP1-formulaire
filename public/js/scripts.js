@@ -223,7 +223,18 @@ function validerEtape(etape) {
                 errElementMontant.innerText = messagesJson["montant"].vide ?? "";
             }
             if (typeDonElement != null && montantElement != null) {
-                valide = true;
+                if (montantElement.value == 'autre') {
+                    const montantPersoElement = document.getElementById("montantPersonnalise");
+                    const montantPersoValide = validerChamp(montantPersoElement);
+                    console.log(montantPersoElement);
+                    console.log(montantPersoValide);
+                    if (montantPersoValide) {
+                        valide = true;
+                    }
+                }
+                else {
+                    valide = true;
+                }
             }
             break;
         case 1:

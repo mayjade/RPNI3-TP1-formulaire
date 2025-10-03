@@ -257,6 +257,7 @@ function validerEtape(etape: number):boolean{
         case 0:
             const typeDonElement = document.querySelector('[name=typeDon]:checked') as HTMLInputElement;
             const errElementDon = document.getElementById("err_typeDon");
+           
             if(typeDonElement != null){
                 errElementDon!.innerText = '';
             }
@@ -274,9 +275,21 @@ function validerEtape(etape: number):boolean{
                 valide = false;
                 errElementMontant!.innerText = messagesJson["montant"].vide ?? "";
             }
-
+            
             if(typeDonElement != null && montantElement != null){
-                valide = true;
+                if (montantElement.value == 'autre') {
+                        const montantPersoElement = document.getElementById("montantPersonnalise") as HTMLInputElement;
+                        const montantPersoValide = validerChamp(montantPersoElement);
+                        console.log(montantPersoElement);
+                        console.log(montantPersoValide);
+                        if(montantPersoValide){
+                            
+                            valide = true;
+                        }
+                }
+                else{
+                    valide = true;
+                }
             }
             
         break;

@@ -45,6 +45,10 @@
     "typeDonneur": {
         "vide": "Veuillez sélectionner un type de donneur."
     },
+    "montantPersonnalise": {
+        "vide": "Veuillez entrer votre montant personnalisé.",
+        "pattern": "Le montant du don doit être un nombre."
+    },
     "montant": {
         "vide": "Veuillez sélectionner un montant."
     },
