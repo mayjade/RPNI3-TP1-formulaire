@@ -3,7 +3,7 @@
 
 // STYLE LE FOOTER
 
-footer {
+.footer {
     background-color: variables.$lime;
     padding: 1em 1em 0 1em;
     display: flex;
@@ -15,7 +15,7 @@ footer {
         padding: 3em 1em 1em 1em;
     }
 
-    img {
+    &__img {
         width: 50px;
         height: auto;
         text-align: center;
@@ -25,7 +25,7 @@ footer {
         }
     }
 
-    p {
+    &__credit {
         color: variables.$brun;
         font-size: 16px;
 

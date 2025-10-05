@@ -68,17 +68,17 @@ legend {
     margin-bottom: .2em;
 }
 
-.infolettre {
+.etape1__infolettre {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 2em;
-}
 
-#caseCocher label {
-    margin-left: 0.5em;
-    margin-top: 0.2em;
-    font-family: variables.$texte;
-    font-size: 16px;
+    &__texte {
+        margin-left: 0.5em;
+        margin-top: 0.2em;
+        font-family: variables.$texte;
+        font-size: 16px;
+    }
 }
 
 fieldset.etape2 label,
@@ -104,35 +104,52 @@ h3 {
     font-size: 24px;
 }
 
-#email,
-#adresse {
-    width: 100%;
-    max-width: 275px;
+.etape2 {
 
-    @media(min-width: variables.$desktop) {
-        max-width: 500px;
+    &__email,
+    &__adresse {
+        width: 100%;
+        max-width: 275px;
+
+        @media(min-width: variables.$desktop) {
+            max-width: 500px;
+        }
     }
 }
 
-#nom,
-#prenom,
-#nomEntreprise,
-#tel,
-#ville,
-#titulaire,
-#cc {
-    width: 100%;
-    max-width: 150px;
+.etape2 {
 
-    @media(min-width: variables.$desktop) {
-        max-width: 200px;
+    &__nom,
+    &__prenom,
+    &__nomEntreprise,
+    &__tel,
+    &__ville {
+        width: 100%;
+        max-width: 150px;
+
+        @media(min-width: variables.$desktop) {
+            max-width: 200px;
+        }
     }
 }
 
-#securitycode,
-#postalcode,
-#appbureau,
-#montantPersonnalise {
+.etape3 {
+
+    &__cc,
+    &__titulaire {
+        width: 100%;
+        max-width: 150px;
+
+        @media(min-width: variables.$desktop) {
+            max-width: 200px;
+        }
+    }
+}
+
+.etape1__montantPersonnalise,
+.etape1__postalcode,
+.etape1_appbureau,
+.etape3__securitycode {
     width: 100%;
     max-width: 75px;
 }

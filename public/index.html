@@ -13,9 +13,9 @@
 <body>
     <header>
         <div class="entete">
-            <img src="images/EQT_LogoOfficiel_RGB.png" alt="">
+            <img class="entete__img" src="images/EQT_LogoOfficiel_RGB.png" alt="">
             <!-- icônes langue et compte-->
-            <div class="icones">
+            <div class="entete__icones">
                 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="none">
                     <path fill="#FFF"
                         d="M19.5 38.25c-2.563 0-4.984-.492-7.266-1.478-2.28-.984-4.273-2.328-5.975-4.03s-3.046-3.695-4.031-5.976C1.243 24.484.75 22.063.75 19.5c0-2.594.493-5.023 1.478-7.288.985-2.265 2.328-4.25 4.03-5.953s3.695-3.048 5.976-4.031C14.516 1.244 16.938.75 19.5.75c2.594 0 5.024.493 7.29 1.478a19.079 19.079 0 0 1 5.951 4.03 19.144 19.144 0 0 1 4.031 5.954c.987 2.266 1.48 4.696 1.478 7.288 0 2.563-.493 4.984-1.478 7.266-.985 2.28-2.328 4.273-4.03 5.977a19.057 19.057 0 0 1-5.954 4.031c-2.266.984-4.696 1.476-7.288 1.476zm0-3.844a23.807 23.807 0 0 0 2.11-3.515A22.196 22.196 0 0 0 23.062 27h-7.125c.374 1.375.859 2.672 1.453 3.89a23.807 23.807 0 0 0 2.109 3.516zm-4.875-.75a25.848 25.848 0 0 1-1.476-3.212A27.931 27.931 0 0 1 12.094 27H6.563a15.55 15.55 0 0 0 3.399 4.078 13.503 13.503 0 0 0 4.663 2.578zm9.75 0a13.5 13.5 0 0 0 4.665-2.578A15.519 15.519 0 0 0 32.437 27h-5.53a27.681 27.681 0 0 1-1.055 3.446 25.583 25.583 0 0 1-1.477 3.21zM4.969 23.25h6.375a25.442 25.442 0 0 1-.21-1.85 25.68 25.68 0 0 1 0-3.797c.048-.608.118-1.226.21-1.853H4.969c-.157.625-.273 1.242-.35 1.853a15.39 15.39 0 0 0 0 3.796c.08.612.196 1.228.35 1.851zm10.125 0h8.812a23.872 23.872 0 0 0 .281-3.75 25.6 25.6 0 0 0-.07-1.897 25.783 25.783 0 0 0-.21-1.853h-8.813a25.466 25.466 0 0 0-.21 1.853 25.705 25.705 0 0 0 0 3.796c.049.612.119 1.228.21 1.851zm12.562 0h6.375c.156-.625.274-1.242.353-1.85.078-.61.117-1.242.116-1.9s-.04-1.29-.116-1.897a15.325 15.325 0 0 0-.353-1.853h-6.375a24.146 24.146 0 0 1 .281 3.75 25.185 25.185 0 0 1-.281 3.75zM26.906 12h5.532a15.57 15.57 0 0 0-3.398-4.078 13.479 13.479 0 0 0-4.665-2.578c.563 1.031 1.055 2.102 1.478 3.212s.773 2.258 1.053 3.444zm-10.968 0h7.125a22.197 22.197 0 0 0-1.454-3.89A23.809 23.809 0 0 0 19.5 4.593a23.809 23.809 0 0 0-2.11 3.515A22.197 22.197 0 0 0 15.938 12zm-9.375 0h5.53c.282-1.188.634-2.336 1.056-3.446s.915-2.18 1.476-3.21c-1.75.562-3.305 1.422-4.665 2.578S7.467 10.438 6.563 12z" />
@@ -33,21 +33,21 @@
         <nav aria-label="Principal">
             <ul class="navigation">
                 <li aria-current="page" id="etat0">
-                    <span class="step">1</span>
-                    <a id="step0" data-etape="1" href="#etape1">
+                    <span class="navigation__stepnumber">1</span>
+                    <a class="navigation__etape" id="step0" data-etape="1" href="#etape1">
                         <span class="hors-ecran">Étape 1 </span>
 
                         Montant</a>
                 </li>
                 <li id="etat1">
-                    <span class="step">2</span>
-                    <a id="step1" data-etape="2" href="#etape2" aria-disabled="true">
+                    <span class="navigation__stepnumber">2</span>
+                    <a class="navigation__etape" id="step1" data-etape="2" href="#etape2" aria-disabled="true">
                         <span class="hors-ecran">Étape 2 </span>
                         Coordonnées</a>
                 </li>
                 <li id="etat2">
-                    <span class="step">3</span>
-                    <a id="step2" data-etape="3" href="#etape3" aria-disabled="true">
+                    <span class="navigation__stepnumber">3</span>
+                    <a class="navigation__etape" id="step2" data-etape="3" href="#etape3" aria-disabled="true">
                         <span class="hors-ecran">Étape 3 </span>
                         Paiement</a>
                 </li>
@@ -89,7 +89,7 @@
                     <label for="autreMontant">Autre</label>
                     <div id="montantPerso" class="montantPerso">
                         <label for="montantPersonnalise">Montant personnalisé*</label>
-                        <input type="text" id="montantPersonnalise" aria-invalid="true" pattern="^[0-9]{1,7}$"
+                        <input type="text" class="etape1__montantPersonnalise" id="montantPersonnalise" aria-invalid="true" pattern="^[0-9]{1,7}$"
                             name="montantPerso" aria-describedby="err_montantPersonnalise" placeholder="0$" required>
                         <span id="err_montantPersonnalise" class="erreur" role="alert" aria-live="polite"></span>
                     </div>
@@ -114,35 +114,35 @@
 
                 <div id="nomEntrep">
                     <label for="nomEntreprise">Nom de l'entreprise*</label>
-                    <input type="text" id="nomEntreprise" name="nomEntreprise" placeholder="Nom de l'entreprise"
+                    <input type="text" class="etape2__nomEntreprise" id="nomEntreprise" name="nomEntreprise" placeholder="Nom de l'entreprise"
                         pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nomEntreprise" required>
                     <span id="err_nomEntreprise" class="erreur" role="alert" aria-live="polite"></span>
                 </div>
 
                 <label for="prenom">Prénom*</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Prénom" autocomplete="given-name"
+                <input type="text" class="etape2__prenom" id="prenom" name="prenom" placeholder="Prénom" autocomplete="given-name"
                     pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_prenom" required>
                 <span id="err_prenom" class="erreur" role="alert" aria-live="polite"></span>
 
                 <label for="nom">Nom*</label>
-                <input type="text" id="nom" name="nom" placeholder="Nom" autocomplete="family-name"
+                <input type="text" class="etape2__nom" id="nom" name="nom" placeholder="Nom" autocomplete="family-name"
                     pattern="^[a-zA-ZÀ-ÿ]+$" aria-invalid="true" aria-describedby="err_nom" required>
                 <span id="err_nom" class="erreur" role="alert" aria-live="polite"></span>
 
                 <label for="email">Courriel*</label>
-                <input type="email" id="email" name="email" placeholder="Courriel" autocomplete="email" pattern="
+                <input type="email" class="etape2__email" id="email" name="email" placeholder="Courriel" autocomplete="email" pattern="
             ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-invalid="true" aria-describedby="err_email"
                     required>
                 <span id="err_email" class="erreur" role="alert" aria-live="polite"></span>
 
-                <div class="infolettre" id="caseCocher">
+                <div class="etape1__infolettre" id="caseCocher">
                     <input type="checkbox" name="infolettre" id="infolettre">
-                    <label for="infolettre">Je veux être au courant des nouveautés chez Équiterre.</label>
+                    <label for="infolettre" class="etape1__infolettre__texte">Je veux être au courant des nouveautés chez Équiterre.</label>
                 </div>
 
 
                 <label for="tel">Téléphone*</label>
-                <input type="tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel"
+                <input type="tel" class="etape2__tel" id="tel" name="telephone" placeholder="(418) 123-4567" autocomplete="tel"
                     pattern="^\(?[0-9]{3}\)? ?[0-9]{3}-?[0-9]{4}$" aria-invalid="true" aria-describedby="err_tel"
                     required>
                 <span id="err_tel" class="erreur" role="alert" aria-live="polite"></span>
@@ -162,20 +162,20 @@
                     <span id="err_province" class="erreur" role="alert" aria-live="polite"></span>
                 </div>
                 <label for="adresse">Adresse*</label>
-                <input name="adresse" id="adresse" placeholder="Adresse" type="text" value="" maxlength="100"
+                <input name="adresse" class="etape2__adresse" id="adresse" placeholder="Adresse" type="text" value="" maxlength="100"
                     pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" aria-invalid="true" aria-describedby="err_adresse"
                     autocomplete="address-line1" required>
                 <span id="err_adresse" class="erreur" role="alert" aria-live="polite"></span>
                 <label for="appbureau" class="">App. / bureau</label>
-                <input id="appbureau" name="appbureau" type="text" pattern="^[0-9]{1,7}$" placeholder="app/bureau"
+                <input id="appbureau" class="etape1_appbureau" name="appbureau" type="text" pattern="^[0-9]{1,7}$" placeholder="app/bureau"
                     value="" maxlength="25">
                 <span id="err_appbureau" class="erreur" role="alert" aria-live="polite"></span>
                 <label for="ville" class="">Ville*</label>
-                <input id="ville" name="ville" type="text" placeholder="Québec" value="" maxlength="25"
+                <input id="ville" class="etape2__tel" name="ville" type="text" placeholder="Québec" value="" maxlength="25"
                     aria-invalid="true" required>
                 <span id="err_ville" class="erreur" role="alert" aria-live="polite"></span>
                 <label for="postalcode" class="">Code postal*</label>
-                <input id="postalcode" name="codepostal" type="text" autocomplete="postal-code" placeholder="A1A 1A1"
+                <input id="postalcode" class="etape1__postalcode" name="codepostal" type="text" autocomplete="postal-code" placeholder="A1A 1A1"
                     value="" maxlength="7" pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$" aria-invalid="true"
                     aria-describedby="err_postalcode" required>
                 <span id="err_postalcode" class="erreur" role="alert" aria-live="polite"></span>
@@ -195,14 +195,14 @@
 
 
                 <label for="titulaire">Nom du titulaire*</label>
-                <input type="text" id="titulaire" name="titulaire" placeholder="Prénom Nom" autocomplete="given-name"
+                <input type="text" class="etape3__titulaire" id="titulaire" name="titulaire" placeholder="Prénom Nom" autocomplete="given-name"
                     pattern="^(?=.{2,50}$)\p{L}+(?:[ '\-]\p{L}+)*$" aria-invalid="true" aria-describedby="err_titulaire"
                     required>
                 <!-- l'attribut pattern du titulaire a été généré par chat GPT -->
                 <span id="err_titulaire" class="erreur" role="alert" aria-live="polite"></span>
 
                 <label for="cc"> Numéro de carte de crédit*</label>
-                <input id="cc" type="text" name="nocartecredit" inputmode="numeric" autocomplete="cc-number"
+                <input id="cc" class="etape3__cc" type="text" name="nocartecredit" inputmode="numeric" autocomplete="cc-number"
                     placeholder="1111 1111 1111 1111" maxlength="16"
                     pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$" aria-invalid="true"
                     aria-describedby="err_cc" required>
@@ -214,7 +214,7 @@
                 <span id="err_expiration" class="erreur" role="alert" aria-live="polite"></span>
 
                 <label for="securitycode">Code de sécurité*</label>
-                <input id="securitycode" type="text" name="codesecurite" inputmode="numeric" autocomplete="cc-csc"
+                <input id="securitycode" class="etape3__securitycode" type="text" name="codesecurite" inputmode="numeric" autocomplete="cc-csc"
                     placeholder="123" maxlength="4" pattern="^[0-9]{3-4}$" aria-invalid="true"
                     aria-describedby="err_securitycode" required>
                 <span id="err_securitycode" class="erreur" role="alert" aria-live="polite"></span>
@@ -235,9 +235,9 @@
 
     </main>
 
-    <footer>
-        <img src="images/logo.jpeg" alt="">
-        <p>Équiterre. Tous droits réservés.</p>
+    <footer class="footer">
+        <img class="footer__img" src="images/logo.jpeg" alt="">
+        <p class="footer__credit">Équiterre. Tous droits réservés.</p>
     </footer>
 </body>
 
