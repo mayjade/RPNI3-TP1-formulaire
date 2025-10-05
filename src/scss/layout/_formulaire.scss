@@ -1,79 +1,80 @@
 @use "sass:color";
 @use "../utilitaires/variables";
 
+// STYLE LES ÉLÉMENTS DANS LE FORMULAIRE
 
-.formulaire{
+.formulaire {
     border: solid 3px variables.$vert;
     border-radius: 8px;
     max-width: 1000px;
     margin: 0 auto;
     padding: .5em;
 
-@media(min-width: variables.$desktop){
-    padding: 2em;
-  }
+    @media(min-width: variables.$desktop) {
+        padding: 2em;
+    }
 }
 
-fieldset{
+fieldset {
     border-style: none;
     max-width: 600px;
     margin: 0 auto;
 }
 
-legend{
+legend {
     text-align: left;
 }
 
-.etape3 legend{
+.etape3 legend {
     margin-bottom: 1em;
 }
 
-.etape1{
+.etape1 {
     text-align: center;
 }
 
-.etape2 select{
+.etape2 select {
     border: solid 1px variables.$vert;
     border-radius: 10px;
     padding: .8em;
     margin-bottom: 2em;
     max-width: 175px;
 
-@media(min-width: variables.$desktop){
-    margin-left: 2em;
-    max-width: 230px;
-  }
+    @media(min-width: variables.$desktop) {
+        margin-left: 2em;
+        max-width: 230px;
+    }
 }
 
 .etape2 input,
 .etape3 input,
-.montantPerso input{
+.montantPerso input {
     border: solid 1px variables.$vert;
     border-radius: 10px;
     padding: .8em;
 }
 
 .etape2 span,
-.etape3 span{
+.etape3 span {
     margin-bottom: 2em;
 }
 
 .etape2 label,
 .etape3 label,
-.montantPerso label{
+.montantPerso label {
     color: variables.$brun;
     font-family: variables.$texte;
     font-size: 18px;
     margin-bottom: .2em;
 }
 
-.infolettre{
+.infolettre {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 2em;
 }
 
-#caseCocher label{
+#caseCocher label {
     margin-left: 0.5em;
     margin-top: 0.2em;
     font-family: variables.$texte;
@@ -86,25 +87,29 @@ fieldset.etape2 span.erreur,
 fieldset.etape3 label,
 fieldset.etape3 input,
 fieldset.etape3 span.erreur {
-  display: block;
+    display: block;
 
-  @media(min-width: variables.$desktop){
-    margin-left: 2em;
-  }
-  
+    @media(min-width: variables.$desktop) {
+        margin-left: 2em;
+    }
+
 }
 
-.resume{
+.resume {
     margin-left: 2em;
     margin-bottom: 3em;
 }
 
+h3 {
+    font-size: 24px;
+}
+
 #email,
-#adresse{
+#adresse {
     width: 100%;
     max-width: 275px;
 
-    @media(min-width: variables.$desktop){
+    @media(min-width: variables.$desktop) {
         max-width: 500px;
     }
 }
@@ -115,11 +120,11 @@ fieldset.etape3 span.erreur {
 #tel,
 #ville,
 #titulaire,
-#cc{
+#cc {
     width: 100%;
     max-width: 150px;
 
-    @media(min-width: variables.$desktop){
+    @media(min-width: variables.$desktop) {
         max-width: 200px;
     }
 }
@@ -127,7 +132,7 @@ fieldset.etape3 span.erreur {
 #securitycode,
 #postalcode,
 #appbureau,
-#montantPersonnalise{
+#montantPersonnalise {
     width: 100%;
     max-width: 75px;
 }

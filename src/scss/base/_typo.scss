@@ -1,13 +1,6 @@
 @use "../utilitaires/mixins";
 @use "../utilitaires/variables";
 
-/**
-* @author Prenom Nom courriel
-* @todo Préciser l’interlignage sur le body pour l’écran large
-* @todo Utiliser le mixin fontSize pour définir les tailles de polices
-* @todo Utiliser une variable pour la media query de la règle body
-*/
-
 /**** Typographie responsive ****/
 
 html {
@@ -16,11 +9,13 @@ html {
 
 body {
   font-family: variables.$texte;
-  font-size: 16px; /* 16px pour toutes les largeurs d'écran */
+  font-size: 16px;
+  /* 16px pour toutes les largeurs d'écran */
   font-size: 1.6rem;
-  line-height: 1.375; /* facteur multiplicateur de la taille de la police 1.375x16=22 */
-  @media (min-width: 601px) {
-  }
+  line-height: 1.375;
+
+  /* facteur multiplicateur de la taille de la police 1.375x16=22 */
+  @media (min-width: 601px) {}
 }
 
 h1,
@@ -40,7 +35,7 @@ h1,
 }
 
 h2,
-.titreNiveau2{
+.titreNiveau2 {
   font-size: 32px;
   padding-top: 1em;
 }
@@ -49,6 +44,7 @@ h3,
 .titreNiveau3 {
   font-size: 18px;
   font-size: 1.8rem;
+
   &--desktop {
     font-size: 22px;
     font-size: 2.2rem;
@@ -60,6 +56,7 @@ h3,
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.375;
+
   &--desktop {
     line-height: 1.5;
   }

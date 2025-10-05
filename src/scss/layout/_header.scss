@@ -1,12 +1,10 @@
 @use "sass:color";
 @use "../utilitaires/variables";
 
-// ol::marker{
-//     color: red;
-// }
+// STYLE LES ÉLÉMENTS DU HEADER ET LA NAVIGATION STEPS LEFT
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
 .entete {
@@ -16,64 +14,65 @@ h1{
   align-items: center;
   position: relative;
 
-  
-  img{
+
+  img {
     max-width: 150px;
     padding: 1em;
 
-    @media(min-width: variables.$desktop){
+    @media(min-width: variables.$desktop) {
       max-width: 600px;
       margin: 0 auto;
       padding: 3em;
     }
   }
-  
+
 }
 
 .icones {
   background-color: variables.$brun;
   padding: 1em;
-  display: flex; 
-  gap: 1em; 
+  display: flex;
+  gap: 1em;
 
   @media (min-width: variables.$desktop) {
     flex-direction: column;
     justify-content: space-between;
-    gap: 2em; 
+    gap: 2em;
     position: absolute;
     top: 0;
     right: 20%;
   }
 }
 
-.navigation{
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
+.navigation {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
 
-    @media (min-width: variables.$desktop) {
-        flex-direction: row;
-        justify-content: space-around;
-        max-width: 600px;
-        margin: 1em auto;
+  @media (min-width: variables.$desktop) {
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 1em auto;
   }
 }
 
-a{
-    font-family: variables.$titre;
-    font-size: 24px;
-    color: variables.$brun;
-    text-decoration: none;
-}
-.etatCourant {
-    color: variables.$brun;
-    // background-color: variables.$vert;
-    // border-radius: 10 px;
+a {
+  font-family: variables.$titre;
+  font-size: 24px;
+  color: variables.$brun;
+  text-decoration: none;
 }
 
-.etatCourant a{
-    color: variables.$vert;
-    text-decoration: underline;
+.etatCourant {
+  color: variables.$brun;
+  // background-color: variables.$vert;
+  // border-radius: 10 px;
+}
+
+.etatCourant a {
+  color: variables.$vert;
+  text-decoration: underline;
 }
 
 .navigation li .step {

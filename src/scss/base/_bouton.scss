@@ -2,12 +2,9 @@
 @use "../utilitaires/variables";
 @use "../utilitaires/mixins";
 
-/**
-* @author Prenom Nom courriel
-* @todo Compléter selon l'énoncé de l'exercice
-*/
+// STYLE LES BOUTONS
 
-.navBouton{
+.navBouton {
   max-width: 800px;
   margin: 3em auto;
   display: flex;
@@ -27,49 +24,49 @@
   align-content: center;
 }
 
-.bouton:hover{
+.bouton:hover {
   background-color: white;
   border: 2px solid variables.$vert;
   color: variables.$vert;
 }
 
-.btnSuivant{
+.btnSuivant {
   margin-left: auto;
 }
 
-.btnEnvoyer{
+.btnEnvoyer {
   margin-left: 12em;
 }
 
 
 // BOUTON DON ET TYPE DONNEUR
-input[name=typeDon] + label,
-input[name=typeDonneur] + .typeDonneur{
+input[name=typeDon]+label,
+input[name=typeDonneur]+.typeDonneur {
   color: variables.$vert;
   font-family: variables.$titre;
   font-size: 16px;
   text-transform: uppercase;
   margin: .5em;
 
-  @media(min-width: variables.$desktop){
+  @media(min-width: variables.$desktop) {
     margin: 1em 2em;
     font-size: 18px;
     display: inline-block;
   }
 }
 
-input[name=typeDon]:checked + label,
-input[name=typeDonneur]:checked + .typeDonneur {
-border-bottom: 2px solid variables.$vert;
-padding-bottom: .5em;
+input[name=typeDon]:checked+label,
+input[name=typeDonneur]:checked+.typeDonneur {
+  border-bottom: 2px solid variables.$vert;
+  padding-bottom: .5em;
 }
 
 // BOUTON MONTANT
-input[name=montant]{
+input[name=montant] {
   display: none;
 }
 
-input[name=montant] + label{
+input[name=montant]+label {
   color: variables.$blanc;
   background-color: variables.$vert;
   font-family: variables.$titre;
@@ -82,15 +79,8 @@ input[name=montant] + label{
   margin: 1em;
 }
 
-input[name=montant]:checked + label {
-border: 2px solid variables.$vert;
-color: variables.$vert;
-background-color: variables.$blanc;
+input[name=montant]:checked+label {
+  border: 2px solid variables.$vert;
+  color: variables.$vert;
+  background-color: variables.$blanc;
 }
-
-
-
-
-
-
-

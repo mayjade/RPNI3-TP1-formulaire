@@ -1,4 +1,5 @@
 "use strict";
+// Variables et constantes globales
 let btnPrecedent;
 let btnSuivant;
 let btnEnvoyer;
@@ -21,12 +22,14 @@ const today = new Date();
 const dateAuj = today.toLocaleDateString("fr-CA");
 let paysJson;
 initialiser();
+// Fonction qui affiche l'étape 0 avec le bon bouton et cache les autres champs
 function initialiser() {
     const formulaire = document.getElementById('formulaire');
     if (formulaire) {
         formulaire.noValidate = true;
     }
     cacherFieldsets();
+    // appelle les fonctions pour naviguer entre les étapes
     btnPrecedent = document.getElementById('btn-precedent');
     btnSuivant = document.getElementById('btn-suivant');
     btnEnvoyer = document.getElementById('btn-envoyer');
@@ -40,6 +43,7 @@ function initialiser() {
     if (btnEnvoyer) {
         btnEnvoyer.addEventListener('click', changerEtape);
     }
+    // permet de retourner voir les étapes précédentes en passant par la navigation
     if (liensEtapes) {
         liensEtapes.forEach(etapeElement => {
             const etapeChoisie = parseInt(etapeElement.dataset.etape);
@@ -67,6 +71,7 @@ function initialiser() {
     obtenirMessages();
     obtenirPays();
 }
+// ajoute le champ montant personnalisé si l'utilisateur choisi autre montant
 function ajouterChampMontant() {
     if (autreMontant?.checked) {
         inputMontant?.classList.remove('cacher');
@@ -75,6 +80,7 @@ function ajouterChampMontant() {
         inputMontant?.classList.add('cacher');
     }
 }
+// ajoute le champ nom de l'entreprise si l'utilisateur choisi Entreprise
 function ajouterChampEntreprise() {
     if (nomEntreprise?.checked) {
         inputEntreprise?.classList.remove('cacher');
@@ -83,10 +89,12 @@ function ajouterChampEntreprise() {
         inputEntreprise?.classList.add('cacher');
     }
 }
+// obtient les messages d'erreurs dans le JSON
 async function obtenirMessages() {
     const reponse = await fetch('objJSONMessages.json');
     messagesJson = await reponse.json();
 }
+// crée la liste déroulante des pays à partir du JSON
 async function obtenirPays() {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
@@ -107,6 +115,7 @@ async function obtenirPays() {
         }
     });
 }
+// crée la liste déroulante des provinces à partir du JSON
 async function obtenirProvince() {
     const reponse = await fetch('pays_prov_etats.json');
     paysJson = await reponse.json();
@@ -118,12 +127,14 @@ async function obtenirProvince() {
         inputProvince.appendChild(elementRegion);
     });
 }
+// Vérifie si les champs sont complétés et respectent leur propre regex fourni dans le HTML
+// retourne true si le champ est valide
+// reçoit en argument le input du champ à valider
 function validerChamp(champ) {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "err_" + id;
     const errElement = document.getElementById(idMessageErreur);
-    // console.log('valider champ', champ.validity);
     if (champ.validity.valueMissing && messagesJson[id].vide) {
         valide = false;
         errElement.innerText = messagesJson[id].vide;
@@ -135,7 +146,6 @@ function validerChamp(champ) {
     else if (champ.validity.patternMismatch && messagesJson[id].pattern) {
         valide = false;
         errElement.innerText = messagesJson[id].pattern;
-        console.log(champ.pattern);
     }
     else {
         valide = true;
@@ -146,6 +156,9 @@ function validerChamp(champ) {
     return valide;
 }
 // Démo du prof faite en classe
+// valide spécifiquement le champ email
+// donne des suggestions pour les erreurs de frappe communes
+// retourne true si le email est valide et ne contient pas un tld suspicieux
 function validerEmail(champ) {
     const tldSuspicieux = [
         '.ru',
@@ -164,6 +177,7 @@ function validerEmail(champ) {
     const errElement = document.getElementById(idMessageErreur);
     const leEmail = champ.value;
     const expRegEmail = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+    // vérifie si le champ a été rempli et s'il respecte son pattern
     if (champ.validity.valueMissing && messagesJson[id].vide) {
         valide = false;
         errElement.innerText = messagesJson[id].vide;
@@ -181,6 +195,7 @@ function validerEmail(champ) {
         errElement.innerText = messagesJson[id].suspicieux;
     }
     else {
+        // done des suggestions pour les erreurs communes
         const valeursCles = Object.keys(erreursCommunes);
         const erreurCle = valeursCles.find((domaine) => {
             return leEmail.toLowerCase().includes(domaine);
@@ -200,14 +215,18 @@ function validerEmail(champ) {
     champ.setAttribute("aria-invalid", valide ? "false" : "true");
     return valide;
 }
+// envoie le email se faire valider dès que l'utilisateur quitte le champ
 function faireValiderEmail(event) {
     const monInput = event.currentTarget;
     validerEmail(monInput);
 }
+// s'assure que tous les champs sont valides avant de changer d'étape
+// reçoit le numéro de l'étape en cours en argument
 function validerEtape(etape) {
     let valide = false;
     switch (etape) {
         case 0:
+            // vérifie que l'utilisateur a choisi un type de don et un montant
             const typeDonElement = document.querySelector('[name=typeDon]:checked');
             const errElementDon = document.getElementById("err_typeDon");
             if (typeDonElement != null) {
@@ -227,11 +246,10 @@ function validerEtape(etape) {
                 errElementMontant.innerText = messagesJson["montant"].vide ?? "";
             }
             if (typeDonElement != null && montantElement != null) {
+                // s'assure que le montant personnalisé est valide
                 if (montantElement.value == 'autre') {
                     const montantPersoElement = document.getElementById("montantPersonnalise");
                     const montantPersoValide = validerChamp(montantPersoElement);
-                    console.log(montantPersoElement);
-                    console.log(montantPersoValide);
                     if (montantPersoValide) {
                         valide = true;
                     }
@@ -242,6 +260,7 @@ function validerEtape(etape) {
             }
             break;
         case 1:
+            // envoie tous les champs à la fonction validerChamp() pour s'assurer qu'ils respectent le pattern
             const typeDonneurElement = document.querySelector('[name=typeDonneur]');
             const appbureauElement = document.getElementById('appbureau');
             const appbureauValide = validerChamp(appbureauElement);
@@ -263,9 +282,11 @@ function validerEtape(etape) {
             const errPays = document.getElementById("err_country");
             let provinceValide = false;
             const errProvince = document.getElementById("err_province");
+            // s'assure qu'un pays a été sélectionné
             if (inputPays.value != "") {
                 paysValide = true;
                 errPays.innerText = '';
+                // valide la province si le pays choisi est le Canada
                 if (inputPays.value == 'CA') {
                     if (inputProvince.value != "") {
                         provinceValide = true;
@@ -282,15 +303,18 @@ function validerEtape(etape) {
             else {
                 errPays.innerText = messagesJson["pays"].vide ?? "";
             }
+            // s'assure qu'un type de donneur a été sélectionné
             const typeDonneurCoche = document.querySelector('[name=typeDonneur]:checked');
             const errElementDonneur = document.getElementById("err_typeDonneur");
             if (typeDonneurCoche != null) {
                 errElementDonneur.innerText = '';
                 if (typeDonneurCoche.value == 'entreprise') {
+                    // vérifie que le nom de l'entreprise est valide si l'utilisateur fait un don au nom d'une entreprise
                     const nomEntrepriseElement = document.getElementById('nomEntreprise');
                     const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
                     if (nomEntrepriseValide) {
                         if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
+                            // valide app/bureau si ce champ est rempli
                             if (appbureauElement.value != '') {
                                 if (appbureauValide) {
                                     valide = true;
@@ -309,6 +333,7 @@ function validerEtape(etape) {
                     }
                 }
                 else {
+                    // valide tous les champs si c'est un don personnel
                     if (nomValide && prenomValide && emailValide && telValide && adresseValide && villeValide && postalValide && paysValide) {
                         if (appbureauElement.value != '') {
                             if (appbureauValide) {
@@ -330,6 +355,7 @@ function validerEtape(etape) {
             }
             break;
         case 2:
+            // s'assure que tous les champs de la carte de crédit sont valides
             const titulaireElement = document.getElementById('titulaire');
             const titulaireValide = validerChamp(titulaireElement);
             const creditElement = document.getElementById('cc');
@@ -339,6 +365,7 @@ function validerEtape(etape) {
             const moisElement = document.getElementById('expiration');
             const errMois = document.getElementById("err_expiration");
             let moisValide = false;
+            // vérifie que la carte de crédit n'est pas expirée
             if (moisElement.value) {
                 if (moisElement.value > dateAuj) {
                     moisValide = true;
@@ -360,16 +387,25 @@ function validerEtape(etape) {
     }
     return valide;
 }
+// affiche la bonne étape
+// reçoit en argument le numéro de l'étape à afficher
 function afficherEtape(etape) {
+    // modifie les attributs aria selon l'étape en cours
     const etatCourant = document.getElementById('etat' + etape);
-    console.log(etatCourant);
+    const monEtape = document.getElementById('step' + etape);
     const mySteps = document.querySelectorAll(".navigation li");
     mySteps.forEach(step => {
         step.removeAttribute("aria-current");
     });
-    if (etatCourant) {
+    const mesEtapes = document.querySelectorAll(".navigation a");
+    mesEtapes.forEach(etape => {
+        etape.setAttribute("aria-disabled", "true");
+    });
+    if (etatCourant && monEtape) {
         etatCourant.setAttribute("aria-current", "page");
+        monEtape.setAttribute("aria-disabled", "false");
     }
+    // affiche la bonne étape et les boutons de navigation entre les étapes
     cacherFieldsets();
     if (etape >= 0 && etape < etapes.length) {
         etapes[etape].classList.remove('cacher');
@@ -383,11 +419,13 @@ function afficherEtape(etape) {
             btnPrecedent?.classList.remove('cacher');
             btnSuivant?.classList.remove('cacher');
             btnEnvoyer?.classList.add('cacher');
+            afficherResume();
         }
         else if (etape == 2) {
             btnPrecedent?.classList.remove('cacher');
             btnSuivant?.classList.add('cacher');
             btnEnvoyer?.classList.remove('cacher');
+            afficherResume();
         }
         else if (etape == 3) {
             btnPrecedent?.classList.add('cacher');
@@ -395,35 +433,61 @@ function afficherEtape(etape) {
             btnEnvoyer?.classList.add('cacher');
         }
     }
-    console.log("etape" + noEtape);
+    // console.log("etape" + noEtape);
 }
+// retourne à l'étape précédente
 function revenirEtape(event) {
     if (noEtape > 0) {
         noEtape--;
-        console.log(noEtape);
+        // console.log (noEtape); 
         afficherEtape(noEtape);
     }
 }
+// affiche l'étape suivante si tous les champs sont biens remplis
 function changerEtape(event) {
     event.preventDefault();
     const etapeValide = validerEtape(noEtape);
     if (etapeValide == true) {
         if (noEtape < 3) {
             noEtape++;
-            console.log('#etape ' + noEtape);
+            // console.log('#etape ' + noEtape); 
             afficherEtape(noEtape);
         }
     }
 }
+// cache toutes les étapes
 function cacherFieldsets() {
     etapes.forEach((section) => {
         section.classList.add('cacher');
     });
 }
-/* Dans votre code JavaScript ou TypeScript, vous devrez :
- * 1. Désactiver les étapes au chargement de la page dans votre fonction "initialiser" (aria-disabled et classe "inactive") sauf l'étape 1.
- *    Note : en JavaScript, les attributs sont nommées en "camel case" - aria-disabled devient ariaDisabled. (ex.: monElement.ariaDisabled = true;)
- * 2. Quand l'étape est validée et que vous passez à la suivante, les liens des étapes valides peuvent devenir actifs
- * 3. Ne permettez la navigation que vers les étapes précédentes. Si on navigue à rebours, les liens des étapes suivantes doivent se désactiver.
- */
-// <a class="etapes__item etapes__item--inactive" aria-disabled="true" href="#etape4">
+// affiche le nom complet et le montant du don choisi par l'utilisateur
+function afficherResume() {
+    const typeDonElement = document.querySelector('[name=typeDon]:checked');
+    const montantElement = document.querySelector('[name="montant"]:checked');
+    const resumeMontant = document.querySelector('.resume__montant');
+    const leNom = document.getElementById('nom');
+    const lePrenom = document.getElementById('prenom');
+    const nomComplet = document.querySelector('.resume__nom');
+    // affiche le montant du don et son type dans le HTML
+    if (typeDonElement && montantElement && resumeMontant) {
+        if (montantElement.value == 'autre') {
+            const montantPerso = document.getElementById('montantPersonnalise');
+            resumeMontant.innerText = "Montant de " + montantPerso.value + "$ " + typeDonElement.value;
+        }
+        else {
+            resumeMontant.innerText = "Montant de " + montantElement.value + "$ " + typeDonElement.value;
+        }
+    }
+    // affiche le nom complet du donneur dans le HTML
+    if (leNom && lePrenom && nomComplet) {
+        const prenom = lePrenom.value.trim();
+        const nom = leNom.value.trim();
+        if (prenom || nom) {
+            nomComplet.innerText = "Au nom de " + prenom + " " + nom;
+        }
+        else {
+            nomComplet.innerText = '';
+        }
+    }
+}
