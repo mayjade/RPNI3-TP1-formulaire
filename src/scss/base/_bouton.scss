@@ -4,6 +4,7 @@
 
 // STYLE LES BOUTONS
 
+// BOUTONS NAVIGATION ENTRE ÉTAPES
 .navBouton {
   max-width: 800px;
   margin: 3em auto;
@@ -38,8 +39,7 @@
   margin-left: 12em;
 }
 
-
-// BOUTON DON ET TYPE DONNEUR
+// BOUTONS RADIO DON ET TYPE DONNEUR
 input[name=typeDon]+label,
 input[name=typeDonneur]+.typeDonneur {
   color: variables.$vert;

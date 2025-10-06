@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
 /**
- * @author Prenom Nom courriel
- * @todo Lier les modules avec des instructions @import
- * @todo Compléter selon l'énoncé de l'exercice
+ * @author Jade Mayrand
  */
 
 /*
@@ -19,13 +17,14 @@
  *
  * BASE
  ** Typographie
- ** Hyperliens
+ ** Grille
  ** Boutons
  *
  * MODULES
- ** gds - Styles généraux du Guide de styles
- ** palette - Palette de couleurs
- ** listeInteractivite - Éléments interactifs
+ ** Formulaire
+ ** Header
+ ** Footer
+ ** Actions
  */
 
 /** LIBRAIRIES **/
@@ -39,7 +38,6 @@
 
 /** BASE **/
 @use "base/bouton";
-@use "base/hyperlien";
 @use "base/typo";
 @use "base/grille";
 

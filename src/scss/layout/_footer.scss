@@ -15,6 +15,7 @@
         padding: 3em 1em 1em 1em;
     }
 
+    // Logo
     &__img {
         width: 50px;
         height: auto;
@@ -25,6 +26,7 @@
         }
     }
 
+    // crédits
     &__credit {
         color: variables.$brun;
         font-size: 16px;

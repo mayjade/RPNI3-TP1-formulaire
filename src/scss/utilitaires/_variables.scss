@@ -1,12 +1,4 @@
 @use "sass:color";
-/**
-* @author Prenom Nom courriel
-* @todo Importer la fonte Futura
-* @todo Personnaliser les variables selon les spécifications du guide visuel
-*       Certaines variables devront être définies par une fonction de coloration
-* @todo Compléter selon l'énoncé de l'exercice
-* @todo Utiliser le sélecteur & pour les sélecteurs des différentes couleurs
-*/
 
 /** Polices de caractères **/
 
@@ -25,10 +17,6 @@ $titre : Optima, sans-serif;
 
 $texte : Jomolhari, sans-serif;
 
-/** Palette de couleurs **/
-// Utiliser http://chir.ag/projects/name-that-color pour obtenir des noms uniques et mémorisables
-// Permettez-vous d'utiliser un nom de variable plus explicite si la suggestion de name-that-color est trop étrange
-
 /* Couleurs de base */
 $lime: #E9F5AF;
 $vert: #A49E3B;
@@ -37,8 +25,6 @@ $brun: #6B2D08;
 $rouge: #FF0000;
 $noir: #000;
 $blanc: #FFF;
-
-// $bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
 
 /** Points de rupture **/
 $desktop : 601px;

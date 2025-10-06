@@ -40,9 +40,6 @@ function initialiser() {
     if (btnSuivant) {
         btnSuivant.addEventListener('click', changerEtape);
     }
-    if (btnEnvoyer) {
-        btnEnvoyer.addEventListener('click', changerEtape);
-    }
     // permet de retourner voir les étapes précédentes en passant par la navigation
     if (liensEtapes) {
         liensEtapes.forEach(etapeElement => {
@@ -445,7 +442,6 @@ function revenirEtape(event) {
 }
 // affiche l'étape suivante si tous les champs sont biens remplis
 function changerEtape(event) {
-    event.preventDefault();
     const etapeValide = validerEtape(noEtape);
     if (etapeValide == true) {
         if (noEtape < 3) {

@@ -3,6 +3,7 @@
 
 // STYLE LES ÉLÉMENTS DANS LE FORMULAIRE
 
+// Cadre du formulaire
 .formulaire {
     border: solid 3px variables.$vert;
     border-radius: 8px;
@@ -21,6 +22,7 @@ fieldset {
     margin: 0 auto;
 }
 
+// Titres des étapes
 legend {
     text-align: left;
 }
@@ -33,6 +35,7 @@ legend {
     text-align: center;
 }
 
+// Champs liste déroulante
 .etape2 select {
     border: solid 1px variables.$vert;
     border-radius: 10px;
@@ -46,6 +49,7 @@ legend {
     }
 }
 
+// Champs des étapes
 .etape2 input,
 .etape3 input,
 .montantPerso input {
@@ -68,6 +72,7 @@ legend {
     margin-bottom: .2em;
 }
 
+// Abonenment infolettre
 .etape1__infolettre {
     display: flex;
     justify-content: flex-start;
@@ -81,6 +86,7 @@ legend {
     }
 }
 
+// aligner les champs
 fieldset.etape2 label,
 fieldset.etape2 input,
 fieldset.etape2 span.erreur,
@@ -95,15 +101,17 @@ fieldset.etape3 span.erreur {
 
 }
 
+// résumé du don
+h3 {
+    font-size: 24px;
+}
+
 .resume {
     margin-left: 2em;
     margin-bottom: 3em;
 }
 
-h3 {
-    font-size: 24px;
-}
-
+// Longueurs des champs
 .etape2 {
 
     &__email,
@@ -152,4 +160,13 @@ h3 {
 .etape3__securitycode {
     width: 100%;
     max-width: 75px;
+}
+
+// Confirmation du don
+.confirmation {
+    text-align: center;
+    font-family: variables.$titre;
+    font-weight: bold;
+    color: variables.$brun;
+    font-size: 24px;
 }

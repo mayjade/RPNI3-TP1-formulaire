@@ -3,10 +3,12 @@
 
 // STYLE LES CLASSES QUI CHANGENT EN TYPESCRIPT 
 
+// Cacher les étapes et boutons
 .cacher{
     display: none;
 }
 
+// Messages d'erreur
 .erreur{
     color: red;
     font-family: variables.$texte;

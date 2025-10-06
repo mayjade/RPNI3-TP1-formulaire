@@ -18,6 +18,7 @@ body {
   @media (min-width: 601px) {}
 }
 
+// Titres
 h1,
 .titreNiveau1,
 h2,
@@ -51,6 +52,7 @@ h3,
   }
 }
 
+// Texte
 .texte {
   font-family: variables.$texte;
   font-size: 16px;

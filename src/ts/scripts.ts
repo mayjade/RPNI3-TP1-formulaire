@@ -64,9 +64,6 @@ function initialiser() {
     if (btnSuivant) {
         btnSuivant.addEventListener('click', changerEtape);
     }
-    if (btnEnvoyer) {
-        btnEnvoyer.addEventListener('click', changerEtape);
-    }
 
     // permet de retourner voir les étapes précédentes en passant par la navigation
     if (liensEtapes) {
@@ -516,7 +513,6 @@ function revenirEtape(event: MouseEvent) {
 
 // affiche l'étape suivante si tous les champs sont biens remplis
 function changerEtape(event: MouseEvent) {
-    event.preventDefault();
     const etapeValide = validerEtape(noEtape);
     if (etapeValide == true) {
         if (noEtape < 3) {

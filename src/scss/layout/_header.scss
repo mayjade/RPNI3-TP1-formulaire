@@ -7,6 +7,7 @@ h1 {
   text-align: center;
 }
 
+// Header
 .entete {
   background-color: variables.$lime;
   display: flex;
@@ -14,7 +15,7 @@ h1 {
   align-items: center;
   position: relative;
 
-
+  // Logo
   &__img {
     max-width: 150px;
     padding: 1em;
@@ -26,6 +27,7 @@ h1 {
     }
   }
 
+  // icônes langue et compte
   &__icones {
     background-color: variables.$brun;
     padding: 1em;
@@ -44,10 +46,15 @@ h1 {
 
 }
 
+// Navigation
 .navigation {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+
+  &__etape {
+    margin: .5em 0;
+  }
 
   @media (min-width: variables.$desktop) {
     flex-direction: row;
@@ -56,20 +63,21 @@ h1 {
     margin: 1em auto;
   }
 
-  &__etape {
+  // nom de l'étape
+  &__nomEtape {
     font-family: variables.$titre;
     font-size: 24px;
     color: variables.$brun;
     text-decoration: none;
   }
 
+  // numéro de l'étape
   &__stepnumber {
     padding: .5em .8em;
     font-size: 20px;
     color: variables.$brun;
     background-color: variables.$lime;
     border-radius: 50px;
-
   }
 }
 
@@ -78,7 +86,7 @@ h1 {
   color: variables.$brun;
 }
 
-.etatCourant .navigation__etape {
+.etatCourant .navigation__nomEtape {
   color: variables.$vert;
   text-decoration: underline;
 }
